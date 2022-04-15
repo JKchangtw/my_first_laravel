@@ -1,0 +1,175 @@
+@media (max-width:1084px){
+    .container{
+        height: 3000px;
+    }
+    .nav{
+        width: 100%;
+    }
+    .navall_icon{
+        line-height: 75px;
+    }
+    .navall_font{
+        line-height: 75px;
+    }
+    .navsearch_icon{
+        line-height: 75px;
+    }
+    .navsearch_font{
+        line-height: 75px;
+    }
+    .navshop_icon{
+        line-height: 75px;
+    }
+    .navshop_font{
+        line-height: 75px;
+    }
+    .section1{
+        background-image: url("/Microsoft圖片/Microsoft圖片檔/RWLAmj1.jpg");
+        width: 100%;
+        height: 15%;
+    }
+    .section4{
+        background-image: url("/Microsoft圖片/RE3hFDE1.jpg");
+        width: 100%;
+        height: 15%;
+    }
+    .section2{
+        width: 100%;
+        height: 4.5%;
+    }
+    .section3{
+        width: 100%;
+        height: 22.75%;
+        flex-wrap: wrap;
+    }
+    .s3box1 {
+        width: 45%;
+        height: 45%;
+    }
+    .s3box1-top {
+        height: 70%;
+    }
+    .s3box1-btm{
+        height: 25%;
+    }
+    .s3box2 {
+        width: 45%;
+        height: 45%;
+    }
+    .s3box2-top {
+        height: 70%;
+    }
+    .s3box2-btm{
+        height: 25%;
+    }
+    .s3box3 {
+        width: 45%;
+        height: 45%;
+    }
+    .s3box3-top {
+        height: 70%;
+    }
+    .s3box3-btm{
+        height: 25%;
+    }
+    .s3box4 {
+        width: 45%;
+        height: 45%;
+    }
+    .s3box4-top {
+        height: 70%;
+    }
+    .s3box4-btm{
+        height: 25%;
+    }
+    .fontbox{
+        width: 100%;
+        height: 1.5%;
+    }
+    .section4{
+        width: 100%;
+    }
+    .section5{
+        width: 100%;
+        height: 22.5%;
+        flex-wrap: wrap;
+    }
+    .s5box1 {
+        width: 45%;
+        height: 45%;
+    }
+    .s5box1-top {
+        height: 70%;
+    }
+    .s5box1-btm{
+        height: 25%;
+    }
+    .s5box2 {
+        width: 45%;
+        height: 45%;
+    }
+    .s5box2-top {
+        height: 70%;
+    }
+    .s5box2-btm{
+        height: 25%;
+    }
+    .s5box3 {
+        width: 45%;
+        height: 45%;
+    }
+    .s5box3-top {
+        height: 70%;
+    }
+    .s5box3-btm{
+        height: 25%;
+    }
+    .s5box4 {
+        width: 45%;
+        height: 45%;
+    }
+    .s5box4-top {
+        height: 70%;
+    }
+    .s5box4-btm{
+        height: 25%;
+    }
+    .msftbox{
+        width: 100%;
+        height: 1%;
+    }
+    .footer{
+        width: 100%;
+        flex-wrap: wrap;
+        height: 27.5%;
+        
+    }
+    .footer div{
+        width: unset;
+        height: unset;
+    }
+    .footer .footerbox1{
+        width: 33.3%;
+        height: 35%;
+    }
+    .footer .footerbox2{
+        width: 33.3%;
+        height: 35%;
+    }
+    .footer .footerbox3{
+        width: 33.3%;
+        height: 35%;
+    }
+    .footer .footerbox4{
+        width: 33.3%;
+        height: 55%;
+    }
+    .footer .footerbox5{
+        width: 33.3%;
+        height: 55%;
+    }
+    .footer .footerbox6{
+        width: 33.3%;
+        height: 55%;
+    }
+}
