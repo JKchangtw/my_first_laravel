@@ -11,6 +11,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    {{-- 通常要連結到public的CSS獨立檔 如以下 --}}
+    {{-- <link rel="stylesheet" href="{{ asset('CSS/bootstrap.css') }}"> --}}
     <style>
         * {
             box-sizing: border-box;
@@ -82,7 +84,7 @@
         .man {
             width: 100%;
             height: 200px;
-            background-color: gray;
+            background-color: white;
             position: relative;
             margin-bottom: 30px;
         }
@@ -132,10 +134,16 @@
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            opacity: 30%;
-            background-color: skyblue;
+            /* opacity: 30%; */
+            /* background-color: skyblue; */
             margin: 0 auto;
             z-index: 0;
+        }
+
+        .cardsection .img img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
         }
 
         .imgimg {
@@ -165,15 +173,17 @@
             height: 100px;
             margin-bottom: 50px;
         }
-        #gallery{
+
+        #gallery {
             margin-bottom: 50px;
         }
+
         #gallery .row>* {
             padding: 0px 8px;
         }
 
         #gallery .col-6 {
-            height: 400px;
+            height: 800px;
             background-color: antiquewhite;
         }
 
@@ -297,7 +307,7 @@
         .cardsection2 .img {
             width: 90%;
             margin: 0 auto;
-            height: 120px;
+            /* height: 120px; */
             margin-top: 18px;
             /* margin-bottom: 12px ; */
             overflow: hidden;
@@ -441,7 +451,7 @@
 
         .merch #merch-img {
             height: 500px;
-            background-image: url(/digipack圖片/400x400.jpg);
+            background-image: url(/digipack_IMG/400x400.jpg);
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
@@ -527,10 +537,10 @@
         }
 
 
-        
+
 
         .footer .footerLogo {
-            background-image: url(/digipack圖片/logo2.jpg);
+            background-image: url("{{ asset('digipack_IMG/logo2.jpg') }}");
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
@@ -551,10 +561,13 @@
         .footer .catarow1 {
             width: 50%;
             /* padding-left:calc((50% - 191.5)*1/3) 0 ; */
+            padding: 0 calc((100% - 383px)*1/5);
         }
 
         .footer .catarow2 {
             width: 50%;
+            padding: 0 calc((100% - 383px)*1/5);
+
         }
 
         .end {
@@ -569,6 +582,20 @@
             transform: translateY(-50%);
             left: 10%;
         }
+
+        .no-img {
+            width: 80px;
+            height: 80px;
+            background-color: wheat;
+            border-radius: 50%;
+            font-size: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+
+        }
+
     </style>
 </head>
 
@@ -577,7 +604,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div id="logo" class="col-6">
-                    <img src="/digipack圖片/logo.jpg" alt="">
+                    <img src="/digipack_IMG/logo.jpg" alt="">
                 </div>
                 <div id="func" class="col-6">
                     <div class="container">
@@ -586,7 +613,19 @@
                             <div class="col">Portfolio</div>
                             <div class="col">About</div>
                             <div class="col">Contact</div>
-                            <div class="col fs-3"><i class="fa-solid fa-cart-shopping"></i></div>
+                            <div class="col fs-3">
+                                {{-- <img src="{{asset('image/shoppingcar.jpg')}}" alt=""> --}}
+
+
+                                <label for="shoppingcar">
+                                    {{-- <button id='shoppingcar'>
+                                        <a href="/shop01"></a>
+                                        <i class="fa-solid fa-cart-shopping">
+                                    </button> --}}
+                                    <a href="/shop01">購物車</a>
+                                </label>
+                                </i>
+                            </div>
                             <div class="col fs-3"><i class="fa-solid fa-circle-user"></i></div>
                         </div>
                     </div>
@@ -598,9 +637,15 @@
         <section class="banner">
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">Slide 1</div>
-                    <div class="swiper-slide">Slide 2</div>
-                    <div class="swiper-slide">Slide 3</div>
+                    <div class="swiper-slide">
+                        <img src="{{ asset('image/pizza-3007395__480.jpg') }}" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="{{ asset('image/gluten-free-thin-crust-pizza.jpg') }}" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="{{ asset('image/Gluten-Free-Pizza-3.2.jpg') }}" alt="">
+                    </div>
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
@@ -621,50 +666,74 @@
 
         </section>
         <section class="cardsection">
-            <div id="card" class="row">
-                <div class="card">
-                    <div class="img">
-                        <div class="imgimg">
-                            <i class="fa-solid fa-heart-pulse"></i>
+            <div class="container-xxl d-flex justify-content-around">
+                @foreach ($data2 as $news)
+                    {{-- <div id="card" class="row" style="width: 18rem;">
+                        <div class="card">
+                            <div class="img">
+                                <img src="@if ($news->img == '' || $news->img == null) {{ asset('image/imgUpload.jpg') }}
+                            @else
+                                {{ $news->img }} @endif"
+                                    alt="">
+                                <img src="{{ $news->img }}" alt="">
+                             </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $news->title }}</h5>
+                                <p class="card-text">{{ $news->content }}</p>
+                                <a href="#" class="btn btn-primary">Learn More &nbsp <i
+                                        class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div> --}}
+                    {{-- 以上是沒有圖片時上預設圖片 --}}
+                    {{-- 以下測試沒有圖片時上字 --}}
+                    <div class="card text-center">
+                        @if ($news->img == '' || $news->img == null)
+                            <div class="no-img">{{ substr($news->title, 0, 1) }}</div>
+                        @else
+                            <div class="img">
+                                <img src="{{ $news->img }}" alt="">
+                            </div>
+                        @endif
+                        <div class="card-body">
+                            <h5 class='card-title'>{{ $news->title }}</h5>
+                            <p class='card-text'>{{ $news->content }}</p>
+                            <span class='card-text'>
+                                <small class='text-muted'>Learn More</small>
+                            </span>
+                            <i class="fa-solid fa-arrow-right"></i>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <h5 class="card-title">The Catalyzer</h5>
-                        <p class="card-text">Blue bottle crucifix vinyl post-ironic four dollar toast vegan
-                            taxidermy. Gastropub indxgo juice poutine, ramps microdosing banh mi pug VHS
-                            try-hard.</p>
-                        <a href="#" class="btn btn-primary">Learn More &nbsp <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <div class="img">
-                        <div class="imgimg">
-                            <i class="fa-solid fa-scissors"></i>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">The Catalyzer</h5>
-                        <p class="card-text">Blue bottle crucifix vinyl post-ironic four dollar toast vegan
-                            taxidermy. Gastropub indxgo juice poutine, ramps microdosing banh mi pug VHS
-                            try-hard.</p>
-                        <a href="#" class="btn btn-primary">Learn More &nbsp <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <div class="img">
-                        <div class="imgimg">
-                            <i class="fa-regular fa-user"></i>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Neptune</h5>
-                        <p class="card-text">Blue bottle crucifix vinyl post-ironic four dollar toast vegan
-                            taxidermy. Gastropub indxgo juice poutine, ramps microdosing banh mi pug VHS
-                            try-hard.</p>
-                        <a href="#" class="btn btn-primary">Learn More &nbsp <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
+                @endforeach
+
+
             </div>
+            {{-- 以下是沒有foreach時的其他兩張card --}}
+            {{-- <div class="card" style="width: 18rem;">
+                    <div class="img">
+                        <div class="imgimg">
+                            <img src="{{$news->img}}" alt="">
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{$news->title}}</h5>
+                        <p class="card-text">{{$news->content}}</p>
+                        <a href="#" class="btn btn-primary">Learn More &nbsp <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <div class="img">
+                        <div class="imgimg">
+                            <img src="{{$news->img}}" alt="">
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{$news->title}}</h5>
+                        <p class="card-text">{{$news->content}}</p>
+                        <a href="#" class="btn btn-primary">Learn More &nbsp <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div> --}}
             <div class="row">
                 <button class="button">Button</button>
             </div>
@@ -674,7 +743,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-4 fs-2">Master Cleanse Reliac Heirloom</div>
-                    <div class="col-8 fs-6">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify,
+                    <div class="col-8 fs-6">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
+                        gentrify,
                         subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing
                         selfies heirloom.</div>
                 </div>
@@ -686,24 +756,24 @@
                 <div class="row ">
                     <div class="col-6 left d-flex flex-wrap justify-content-between">
                         <div class="small">
-                            <img src="/digipack圖片/500x300.jpg" alt="">
+                            <img src="{{ $data1[0]->img }}" alt="">
                         </div>
                         <div class="small">
-                            <img src="/digipack圖片/501x301.jpg" alt="">
+                            <img src="{{ $data1[0]->img }}" alt="">
                         </div>
                         <div class="big">
-                            <img src="/digipack圖片/600x360.jpg" alt="">
+                            <img src="{{ $data1[1]->img }}" alt="">
                         </div>
                     </div>
                     <div class="col-6 right  d-flex flex-wrap justify-content-between">
                         <div class="big">
-                            <img src="/digipack圖片/601x361.jpg" alt="">
+                            <img src="{{ $data1[0]->img }}" alt="">
                         </div>
                         <div class="small">
-                            <img src="/digipack圖片/502x302.jpg" alt="">
+                            <img src="{{ $data1[1]->img }}" alt="">
                         </div>
                         <div class="small">
-                            <img src="/digipack圖片/503x303.jpg" alt="">
+                            <img src="{{ $data1[1]->img }}" alt="">
                         </div>
                     </div>
                 </div>
@@ -714,7 +784,8 @@
             <div id="pricing" class="container-sm">
                 <div class="row">
                     <div class="col-12 fs-2">Pricing</div>
-                    <div class="col-12 fs-6">Banh mi cornhole echo park skateboard authentic crucifix neutra tilde lyft
+                    <div class="col-12 fs-6">Banh mi cornhole echo park skateboard authentic crucifix neutra tilde
+                        lyft
                         biodiesel artisan direct trade mumblecore 3 wolf moon twee</div>
                 </div>
             </div>
@@ -790,48 +861,56 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="img">
-                        <img src="/digipack圖片/720x400.jpg" class="card-img-top" alt="...">
+                        <img width="225" height="135    " src="" onerror="errorImg(this)" />
+                        {{-- <img src="/digipack_IMG/720x400.jpg" class="card-img-top" alt="..."> --}}
                     </div>
                     <div class="card-body">
                         <span>SUBTITlE</span>
                         <h5 class="card-title">Chichen Itza</h5>
-                        <p class="card-text">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon
+                        <p class="card-text">Fingerstache flexitarian street art 8-bit waistcoat. Distillery
+                            hexagon
                             disrupt edison bulbche.</p>
 
                     </div>
                 </div>
                 <div class="card">
                     <div class="img">
-                        <img src="/digipack圖片/721x401.jpg" class="card-img-top" alt="...">
+                        <img width="225" height="135    " src="" onerror="errorImg(this)" />
+                        {{-- <img src="/digipack_IMG/721x401.jpg" class="card-img-top" alt="..."> --}}
                     </div>
                     <div class="card-body">
                         <span>SUBTITlE</span>
                         <h5 class="card-title">Colosseum Roma</h5>
-                        <p class="card-text">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon
+                        <p class="card-text">Fingerstache flexitarian street art 8-bit waistcoat. Distillery
+                            hexagon
                             disrupt edison bulbche.</p>
 
                     </div>
                 </div>
                 <div class="card">
                     <div class="img">
-                        <img src="/digipack圖片/722x402.jpg" class="card-img-top" alt="...">
+                        <img width="225" height="135    " src="" onerror="errorImg(this)" />
+                        {{-- <img src="/digipack_IMG/722x402.jpg" class="card-img-top" alt="..."> --}}
                     </div>
                     <div class="card-body">
                         <span>SUBTITlE</span>
                         <h5 class="card-title">Great Pyramid of Giza</h5>
-                        <p class="card-text">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon
+                        <p class="card-text">Fingerstache flexitarian street art 8-bit waistcoat. Distillery
+                            hexagon
                             disrupt edison bulbche.</p>
 
                     </div>
                 </div>
                 <div class="card">
                     <div class="img">
-                        <img src="/digipack圖片/723x403.jpg" class="card-img-top" alt="...">
+                        <img width="225" height="135    " src="" onerror="errorImg(this)" />
+                        {{-- <img src="/digipack_IMG/723x403.jpg" class="card-img-top" alt="..."> --}}
                     </div>
                     <div class="card-body">
                         <span>SUBTITlE</span>
                         <h5 class="card-title">San Francisco</h5>
-                        <p class="card-text">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon
+                        <p class="card-text">Fingerstache flexitarian street art 8-bit waistcoat. Distillery
+                            hexagon
                             disrupt edison bulbche.</p>
 
                     </div>
@@ -848,7 +927,8 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Shooting Stars</h5>
-                        <p class="card-text">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy.
+                        <p class="card-text">Blue bottle crucifix vinyl post-ironic four dollar toast vegan
+                            taxidermy.
                             Gastropub indxgo juice poutine.</p>
                         <a href="#" class="btn btn-primary">Learn More &nbsp <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
@@ -862,9 +942,11 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">The Catalyzer</h5>
-                        <p class="card-text">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy.
+                        <p class="card-text">Blue bottle crucifix vinyl post-ironic four dollar toast vegan
+                            taxidermy.
                             Gastropub indxgo juice poutine.</p>
-                        <a href="#" class="btn btn-primary">Learn More &nbsp <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="#" class="btn btn-primary">Learn More &nbsp <i
+                                class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="row line"></div>
@@ -876,9 +958,11 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">The 400 Blows</h5>
-                        <p class="card-text">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy.
+                        <p class="card-text">Blue bottle crucifix vinyl post-ironic four dollar toast vegan
+                            taxidermy.
                             Gastropub indxgo juice poutine.</p>
-                        <a href="#" class="btn btn-primary">Learn More &nbsp <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="#" class="btn btn-primary">Learn More &nbsp <i
+                                class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="row">
@@ -890,7 +974,7 @@
             <div class="container">
                 <div class="row d-flex flex-column flex-lg-row">
                     <div class="col-12 col-md-6 h-auto ">
-                        <img src="/digipack圖片/400x400.jpg" id="merch-img" class="h-100">
+                        <img src="/digipack_IMG/400x400.jpg" id="merch-img" class="h-100">
                     </div>
                     <div id="merch-right" class="col-12 col-md-6 pt-4 pb-4 pe-0 ps-5 h-100">
                         <span class="subtitle">BRAND NAME</span>
@@ -945,9 +1029,41 @@
         <section class="cardsection4">
             <div class="container-fluid">
                 <div class="row d-flex flex-row justify-content-around">
-                    <div class="col-6 d-flex flex-row justify-content-around">
+                    <div class="col-2 card">
+                        <img src="/digipack_IMG/420x260.jpg" class="card-img-btm1" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">CATEGORY</h5>
+                            <p class="card-text">The Catalyzer</p>
+                            <p class="card-text"><small class="text-muted">$16.00</small></p>
+                        </div>
+                    </div>
+                    <div class="col-2 card">
+                        <img src="/digipack_IMG/420x260.jpg" class="card-img-btm2" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">CATEGORY</h5>
+                            <p class="card-text">Shooting Stars</p>
+                            <p class="card-text"><small class="text-muted">$21.15</small></p>
+                        </div>
+                    </div>
+                    <div class="col-2 card">
+                        <img src="/digipack_IMG/420x260.jpg" class="card-img-btm3" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">CATEGORY</h5>
+                            <p class="card-text">Neptune</p>
+                            <p class="card-text"><small class="text-muted">$12.00</small></p>
+                        </div>
+                    </div>
+                    <div class="col-2 card">
+                        <img src="/digipack_IMG/420x260.jpg" class="card-img-btm4" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">CATEGORY</h5>
+                            <p class="card-text">The 400 Blows</p>
+                            <p class="card-text"><small class="text-muted">$18.40</small></p>
+                        </div>
+                    </div>
+                    {{-- <div class="col-6 d-flex flex-row justify-content-around">
                         <div class="col-6 card">
-                            <img src="/digipack圖片/420x260.jpg" class="card-img-top1" alt="...">
+                            <img src="/digipack_IMG/420x260.jpg" class="card-img-top1" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">CATEGORY</h5>
                                 <p class="card-text">The Catalyzer</p>
@@ -955,7 +1071,7 @@
                             </div>
                         </div>
                         <div class="col-6 card">
-                            <img src="/digipack圖片/420x260.jpg" class="card-img-top2" alt="...">
+                            <img src="/digipack_IMG/420x260.jpg" class="card-img-top2" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">CATEGORY</h5>
                                 <p class="card-text">Shooting Stars</p>
@@ -965,7 +1081,7 @@
                     </div>
                     <div class="col-6 d-flex flex-row justify-content-around">
                         <div class="col-6 card">
-                            <img src="/digipack圖片/420x260.jpg" class="card-img-top3" alt="...">
+                            <img src="/digipack_IMG/420x260.jpg" class="card-img-top3" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">CATEGORY</h5>
                                 <p class="card-text">Neptune</p>
@@ -973,42 +1089,42 @@
                             </div>
                         </div>
                         <div class="col-6 card">
-                            <img src="/digipack圖片/420x260.jpg" class="card-img-top4" alt="...">
+                            <img src="/digipack_IMG/420x260.jpg" class="card-img-top4" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">CATEGORY</h5>
                                 <p class="card-text">The 400 Blows</p>
                                 <p class="card-text"><small class="text-muted">$18.40</small></p>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="row d-flex flex-row justify-content-around">
-                    <div class="col-3 card">
-                        <img src="/digipack圖片/420x260.jpg" class="card-img-btm1" alt="...">
+                    <div class="col-2 card">
+                        <img src="/digipack_IMG/420x260.jpg" class="card-img-btm1" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">CATEGORY</h5>
                             <p class="card-text">The Catalyzer</p>
                             <p class="card-text"><small class="text-muted">$16.00</small></p>
                         </div>
                     </div>
-                    <div class="col-3 card">
-                        <img src="/digipack圖片/420x260.jpg" class="card-img-btm2" alt="...">
+                    <div class="col-2 card">
+                        <img src="/digipack_IMG/420x260.jpg" class="card-img-btm2" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">CATEGORY</h5>
                             <p class="card-text">Shooting Stars</p>
                             <p class="card-text"><small class="text-muted">$21.15</small></p>
                         </div>
                     </div>
-                    <div class="col-3 card">
-                        <img src="/digipack圖片/420x260.jpg" class="card-img-btm3" alt="...">
+                    <div class="col-2 card">
+                        <img src="/digipack_IMG/420x260.jpg" class="card-img-btm3" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">CATEGORY</h5>
                             <p class="card-text">Neptune</p>
                             <p class="card-text"><small class="text-muted">$12.00</small></p>
                         </div>
                     </div>
-                    <div class="col-3 card">
-                        <img src="/digipack圖片/420x260.jpg" class="card-img-btm4" alt="...">
+                    <div class="col-2 card">
+                        <img src="/digipack_IMG/420x260.jpg" class="card-img-btm4" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">CATEGORY</h5>
                             <p class="card-text">The 400 Blows</p>
@@ -1024,12 +1140,12 @@
                 width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"> </iframe>
             <div class="feedback">
-                <h3>Feedback</h3>
+                <h4>Feedback</h4>
                 <p>Post-ironic portland shabby chic echo park, banjo fashion axe</p>
                 <p>Email</p>
                 <input type="text">
                 <p>Message</p>
-                <textarea name="" id="" cols="30" rows="10"></textarea>
+                <textarea name="" id="" cols="30" rows="8"></textarea>
                 <button></button>
                 <p>Chicharrones blog helvetica normcore iceland tousled brook viral artisan.</p>
             </div>
@@ -1039,44 +1155,43 @@
         <section class="footer mb-5">
             <div class="container-fluid">
                 <div class="row d-flex">
-                    <div class="footerLeft d-flex flex-wrap">
+                    <div class="col-4 d-flex flex-wrap">
                         <div class="footerLogo"></div>
                         <div class="footerTitle d-flex align-items-center fs-4">數位方塊</div>
                         <div class="footerIntro">Air plant banjo lyft occupy retro adaptogen indego</div>
                     </div>
-                    <div class="footerRight d-flex justify-content-around">
-                        <div class="catarow1 d-flex justify-content-between ">
-                            <div class="cata">
-                                <div class="mb-1">CATEGORIES</div>
-                                <div>First Link</div>
-                                <div>Second Link</div>
-                                <div>Third Link</div>
-                                <div>Fourth Link</div>
-                            </div>
-                            <div class="cata">
-                                <div class="mb-1">CATEGORIES</div>
-                                <div>First Link</div>
-                                <div>Second Link</div>
-                                <div>Third Link</div>
-                                <div>Fourth Link</div>
-                            </div>
+                    <div class="col-8 d-flex justify-content-around">
+
+                        <div class="cata">
+                            <div class="mb-1">CATEGORIES</div>
+                            <div>First Link</div>
+                            <div>Second Link</div>
+                            <div>Third Link</div>
+                            <div>Fourth Link</div>
                         </div>
-                        <div class="catarow2 d-flex justify-content-around">
-                            <div class="cata">
-                                <div class="mb-1">CATEGORIES</div>
-                                <div>First Link</div>
-                                <div>Second Link</div>
-                                <div>Third Link</div>
-                                <div>Fourth Link</div>
-                            </div>
-                            <div class="cata">
-                                <div class="mb-1">CATEGORIES</div>
-                                <div>First Link</div>
-                                <div>Second Link</div>
-                                <div>Third Link</div>
-                                <div>Fourth Link</div>
-                            </div>
+                        <div class="cata">
+                            <div class="mb-1">CATEGORIES</div>
+                            <div>First Link</div>
+                            <div>Second Link</div>
+                            <div>Third Link</div>
+                            <div>Fourth Link</div>
                         </div>
+
+                        <div class="cata">
+                            <div class="mb-1">CATEGORIES</div>
+                            <div>First Link</div>
+                            <div>Second Link</div>
+                            <div>Third Link</div>
+                            <div>Fourth Link</div>
+                        </div>
+                        <div class="cata">
+                            <div class="mb-1">CATEGORIES</div>
+                            <div>First Link</div>
+                            <div>Second Link</div>
+                            <div>Third Link</div>
+                            <div>Fourth Link</div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -1102,6 +1217,12 @@
 
 
 
+    <script>
+        function errorImg(img) {
+            img.src = "{{ $dataDefault[1]->img }}";
+            img.onerror = null;
+        }
+    </script>
 
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
     <script>
@@ -1120,8 +1241,8 @@
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

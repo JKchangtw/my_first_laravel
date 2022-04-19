@@ -1,41 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('bootstrap.Template')
+@section('title')
+    Step01
+@endsection
+@section('css')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <style>
-        nav{
-            height: 92px;
-            background-color: gainsboro;
-        }
-        footer{
-            height: 372px;
-            background-color: beige;
-        }
-        #shopping-step01{
+        #shopping-step01 {
             background-color: cornflowerblue;
 
         }
-        #shopping-step01 .container-xxl{
+
+        #shopping-step01 .container-xxl {
             background-color: aliceblue;
             border-radius: 15px;
         }
-        #shopping-step01 .buy-progress{
 
-        }
-        #shopping-step01 .steps{
+        #shopping-step01 .buy-progress {}
+
+        #shopping-step01 .steps {
             display: flex;
             /* flex-direction: ; */
             align-items: center;
             justify-content: center;
         }
-        #shopping-step01 .steps .step{
+
+        #shopping-step01 .steps .step {
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -44,7 +32,8 @@
             text-align: center;
             position: relative;
         }
-        #shopping-step01 .steps .step::before{
+
+        #shopping-step01 .steps .step::before {
             content: attr(data-text);
             position: absolute;
             width: 120px;
@@ -57,47 +46,47 @@
             color: black;
 
         }
-        #shopping-step01 .buy-progress .buy-progress-bar{
+
+        #shopping-step01 .buy-progress .buy-progress-bar {
             width: 180px;
             height: 10px;
             border-radius: 5px;
             background-color: darkgray;
             margin: 0px 8px;
         }
-        #shopping-step01 .steps .green{
+
+        #shopping-step01 .steps .green {
             background-color: green;
             color: white;
         }
-        #shopping-step01 .steps .progress-25::before{
+
+        #shopping-step01 .steps .progress-25::before {
             content: '';
-            width: 100%;
+            width: 50%;
             height: 100%;
             background-color: green;
             display: block;
             border-radius: 5px;
         }
-        #shopping-step01 .steps .progress-50::before{
-            content: '';
-            width: 100%;
-            height: 100%;
-            background-color: green;
-            display: block;
-            border-radius: 5px;
-        }
-        #shopping-step01 .steps .progress-75::before{
-            content: '';
-            width: 100%;
-            height: 100%;
-            background-color: green;
-            display: block;
-            border-radius: 5px;
-        }
-        #shopping-step01 .buy-list{
+
+        #shopping-step01 .buy-list {
             height: 40px;
         }
-        .list .row h1{
-            text-align: center;
+
+        .list .row {
+            width: 100%;
+            height: 100px;
         }
+        .list .row .col-10, .list .row .col-2{
+            height: 100%;
+        }
+        .list .row.line{
+
+            width: 100%;
+            height: 1px;
+            background-color: gainsboro;
+        }
+
         .list .img1, .img2, .img3 {
             width: 50px;
             height: 50px;
@@ -115,69 +104,55 @@
         .list .img3{
             background-image: url(/image/pizza-3007395__480.jpg);
         }
-        
 
-
-        .list .row.line{
-            
-            width: 100%;
-            height: 1px;
-            background-color: gainsboro;
-        }
-        .list .row.next{
+        .row.total {
             position: relative;
-            height: 50px;
         }
-        .list .row button{
+
+        .total .totalbox {
+            height: 100%;
+            width: 20%;
             position: absolute;
             right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 100px;
-            border: unset;
-            background-color:aquamarine;
         }
 
+        .row.next {
+            padding-top: 30px;
+        }
 
+        .row.next .back {
+            left: 0;
+            width: 120px;
+            height: 30px;
+        }
 
-    </style>
-</head>
+        .row.next .back i {
+            line-height: ;
+        }
 
-<body>
-    <nav>
-        <div class="container-fluid">
-            <div class="row">
-                <div id="logo" class="col-6">
-                    <!-- <img src="/digipack圖片/logo.jpg" alt=""> -->
-                </div>
-                <div id="func" class="col-6">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col">Blog</div>
-                            <div class="col">Portfolio</div>
-                            <div class="col">About</div>
-                            <div class="col">Contact</div>
-                            <div class="col fs-3"><i class="fa-solid fa-cart-shopping"></i></div>
-                            <div class="col fs-3"><i class="fa-solid fa-circle-user"></i></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-    <main>
+        .row.next .next {
+            width: 80px;
+            height: 30px;
+            border: unset;
+            background-color: aquamarine;
+            font-size: 14px;
+        }
+
+@endsection
+@section('main')
         <section id="shopping-step01" class="pt-3 pb-3">
             <div class="container-xxl">
                 <div class="buy-progress">
                     <h1>購物車</h1>
                     <div class="steps">
                         <div class="step green" data-text="確認購物車">1</div>
-                        <div class="buy-progress-bar progress-25" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                        <div class="step green" data-text="付款與運送方式">2</div>
-                        <div class="buy-progress-bar progress-50"></div>
-                        <div class="step green" data-text="填寫資料">3</div>
-                        <div class="buy-progress-bar progress-75"></div>
-                        <div class="step green" data-text="完成訂購">4</div>
+                        <div class="buy-progress-bar progress-25" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                            aria-valuemax="100"></div>
+                        <div class="step" data-text="付款與運送方式">2</div>
+                        <div class="buy-progress-bar"></div>
+                        <div class="step" data-text="填寫資料">3</div>
+                        <div class="buy-progress-bar"></div>
+                        <div class="step" data-text="完成訂購">4</div>
                     </div>
                 </div>
                 <div class="buy-list"></div>
@@ -187,10 +162,7 @@
             <div class="container d-flex flex-column">
                 <div class="row line"></div>
                 <div class="row">
-                    <h1><b>訂單成立</b></h1>
-                </div>
-                <div class="row">
-                    <h3>訂單明細</h3>
+                    <h2>訂單明細</h2>
                 </div>
                 <div class="row d-flex flex-row">
                     <div class="col-10 d-flex">
@@ -245,26 +217,6 @@
                         <div class="price">$10.50</div>
                     </div>
                 </div>
-
-                <div class="row">
-                    <h3>寄送資料</h3>
-                </div>
-                <div class="row">
-                    <div class="col-1">姓名</div>
-                    <div class="col-1">王小明</div>
-                </div>
-                <div class="row">
-                    <div class="col-1">電話</div>
-                    <div class="col-1"> 0912345678</div>
-                </div>
-                <div class="row">
-                    <div class="col-1">Email</div>
-                    <div class="col-5">abc123@gmail.com</div>
-                </div>
-                <div class="row">
-                    <div class="col-1">地址</div>
-                    <div class="col-5">409 台中市小鎮村英雄路1號</div>
-                </div>
                 <div class="row line"></div>
                 <div class="row total d-flex flex-column">
                     <div class="totalbox">
@@ -288,19 +240,20 @@
                 </div>
                 <div class="row line"></div>
                 <div class="row next d-flex justify-content-between">
-                    <button>返回頁首</button>
+                    <div class="back d-flex">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <a class="back" href="/bootstrap">返回購物</a>
+                    </div>
+                    <button class="next">
+                        <a href="/shop02">
+                        下一步</a></button>
                 </div>
             </div>
         </section>
-    </main>
-    <footer>複製</footer>
+ @endsection
 
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
-</body>
 
-</html>
+

@@ -1,0 +1,557 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+#logo {
+    height: 80px;
+    background-color: white;
+}
+
+#logo img {
+    height: 100%;
+    width: 120px;
+}
+
+#func {
+    height: 80px;
+    background-color: white;
+}
+
+#func .col {
+    line-height: 80px;
+}
+
+#icon {
+    height: 80px;
+    background-color: aqua;
+}
+
+.banner {
+    width: 100%;
+    height: 500px;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.man {
+    width: 100%;
+    height: 200px;
+    background-color: gray;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+/* .innerBlock {
+    width: 85%;
+    height: 200px;
+    background-color: gray;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+} */
+
+.man .container {
+    /* width: 90%;
+    height: 80%; */
+    background-color: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.man .row {
+    text-align: center;
+}
+
+
+/*  */
+#line {
+    width: 70px;
+    height: 3px;
+    background-color: #007Aff;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    border-radius: 3px;
+}
+
+#card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.cardsection .img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    /* opacity: 30%; */
+    /* background-color: skyblue; */
+    margin: 0 auto;
+    z-index: 0;
+}
+
+.imgimg {
+    font-size: 36px;
+    line-height: 80px;
+    text-align: center;
+}
+
+.card {
+    border: unset;
+    margin-bottom: 40px;
+}
+
+.button {
+    height: 40px;
+    width: 100px;
+    background-color: #007Aff;
+    border-radius: 5px;
+    border: unset;
+    margin: auto;
+    color: white;
+    margin-bottom: 100px;
+}
+
+.master {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 50px;
+}
+#gallery{
+    margin-bottom: 50px;
+}
+#gallery .row>* {
+    padding: 0px 8px;
+}
+
+#gallery .col-6 {
+    height: 400px;
+    background-color: antiquewhite;
+}
+
+#gallery img {
+    width: 100%;
+}
+
+#gallery .small {
+    width: calc(50% - 8px);
+    height: 30%;
+}
+
+#gallery .big {
+    width: 100%;
+    height: 60%;
+}
+
+#gallery .left .big {
+    margin-top: 16px;
+    height: 60%;
+}
+
+#gallery .right .big {
+    margin-bottom: 16px;
+    height: 60%;
+}
+
+#pricing {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.planTable {
+    width: 100%;
+    height: 500px;
+}
+
+.table {
+    width: 60%;
+    height: 250px;
+    margin: 0 auto;
+}
+
+.table thead tr th {
+    background-color: whitesmoke;
+
+}
+
+.button {
+    position: relative;
+}
+
+.table tfoot {
+    border-style: none;
+}
+
+tfoot button {
+    width: 80px;
+    height: 40px;
+    background-color: #007Aff;
+    border-radius: 5px;
+    border: unset;
+    margin: auto;
+    color: white;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#check {
+    float: right;
+}
+
+.btn.btn-primary {
+    background-color: unset;
+    border: unset;
+    color: #007Aff;
+}
+
+.pitchfork {
+    height: 150px;
+}
+
+.pitchfork .container {
+    height: 150px;
+    display: flex;
+    /* flex-wrap: wrap; */
+    flex-direction: row;
+}
+
+.pitchfork .left {
+    height: 50px;
+    width: 40vw;
+    font-size: 20px;
+    float: left;
+
+}
+
+.pitchfork .left .line {
+    width: 60px;
+    height: 3px;
+    background-color: #007Aff;
+    border-radius: 3px;
+}
+
+.pitchfork .right {
+    height: 100px;
+    width: 50vw;
+    font-size: 8px;
+    color: gray;
+    float: right;
+}
+
+.cardsection2 .container-fluid {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.cardsection2 .img {
+    width: 90%;
+    margin: 0 auto;
+    height: 120px;
+    margin-top: 18px;
+    /* margin-bottom: 12px ; */
+    overflow: hidden;
+}
+
+.cardsection2 .card {
+    width: 24%;
+    background-color: whitesmoke;
+
+
+}
+
+.card-body span {
+    color: #007Aff;
+    font-size: 12px;
+}
+
+.card-body h5 {
+    font-size: 14px
+}
+
+.card-body p {
+    font-size: 12px;
+    ;
+    color: dimgray;
+}
+
+.cardsection3 .container {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.cardsection3 .row {
+    /* width: 100%; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cardsection3 .row.reverse {
+    flex-direction: row-reverse;
+
+}
+
+.cardsection3 .row.line {
+    height: 1px;
+    width: 100%;
+    border-radius: 1px;
+    margin: 0 auto;
+    background-color: gainsboro;
+
+}
+
+.cardsection3 .img {
+    width: 80px;
+    height: 80px;
+    background-color: #e0e7ff;
+    border-radius: 50%;
+    margin: auto 0;
+
+}
+
+.cardsection3 .imgimg {
+    color: #6366f1;
+}
+
+.cardsection3 a {
+    padding: unset;
+    color: #6f72f2;
+    font-size: 12px;
+}
+
+.cardsection3 .card-body {
+    width: calc(100% - 100px);
+}
+
+.cardsection3 button {
+    width: 80px;
+    height: 30px;
+    background-color: #6366f1;
+    margin: 0 auto;
+    border: unset;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+@media(max-width:1100px) {
+
+    #merch .subtitle {
+        letter-spacing: 1px;
+        color: rgb(107, 144, )
+    }
+
+    #merch .color .ball {
+        width: 20px;
+        height: 20px;
+    }
+
+
+
+
+
+
+
+}
+
+@media(max-width:640px) {
+    .cardsection3 .row {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+    }
+
+    .cardsection3 .row.reverse {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .cardsection3 .img,
+    .card-body,
+    .card-title,
+    .card-text {
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .cardsection3 .row.line {
+        margin-bottom: 10px;
+    }
+}
+
+.merch .container {
+    height: 500px;
+    margin-bottom: 150px;
+}
+
+.merch #merch-img {
+    height: 500px;
+    background-image: url(/digipack圖片/400x400.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.merch #merch-right {
+    height: 500px;
+}
+
+.rounded-circle {
+    width: 16px;
+    height: 16px;
+}
+
+.star {
+    color: #6366f1;
+}
+
+.content {
+    font-size: 14px;
+}
+
+.merch span {
+    font-size: 12px;
+    color: gray
+}
+
+.merch .add button {
+    width: 80px;
+    height: 30px;
+    background-color: #6366f1;
+    margin: 0 auto;
+    border: unset;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+}
+
+.merch .add .fav {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: gray;
+}
+
+.merch .add .fav div {
+    text-align: center;
+    line-height: 30px;
+}
+
+.cardsection4 img {
+    width: 210px;
+    height: 130px;
+}
+
+.map {
+    margin-bottom: 50px;
+    width: 100vw;
+    height: 600px;
+    position: relative;
+}
+
+.map iframe {
+    width: 100%;
+    height: 100%;
+    opacity: 0.75;
+    filter: grayscale(0.9);
+
+}
+
+.map .feedback {
+    background-color: white;
+    border-radius: 20px;
+    position: absolute;
+    height: 80%;
+    width: 40%;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100000000;
+    padding-top: 20px;
+    padding-left: 10px;
+}
+
+
+
+
+.footer .footerLogo {
+    background-image: url(/digipack圖片/logo2.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100px;
+    height: 100px;
+}
+
+.footer .footerLeft {
+    width: 30%;
+
+}
+
+.footer .footerRight {
+    width: 70%;
+
+}
+
+.footer .catarow1 {
+    width: 50%;
+    /* padding-left:calc((50% - 191.5)*1/3) 0 ; */
+}
+
+.footer .catarow2 {
+    width: 50%;
+}
+
+.end {
+    height: 80px;
+    background-color: #f3f4f6;
+    position: relative;
+}
+
+.end .container {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10%;
+}

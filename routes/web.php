@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\NewController;
+use App\Http\Controllers\BootstrapController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +27,19 @@ Route::get('/microsoft', [NewController::class, 'index']);
 Route::get('/bmi', [Controller::class, 'bmi']);
 Route::get('/colortest', [Controller::class, 'colortest']);
 Route::get('/dice', [Controller::class, 'dice']);
+
+//用controller開bootstrap
+Route::get('/bootstrap', [BootstrapController::class, 'bootstrap']);
+Route::get('/shop01', [BootstrapController::class, 'shop01']);
+Route::get('/shop02', [BootstrapController::class, 'shop02']);
+Route::get('/shop03', [BootstrapController::class, 'shop03']);
+Route::get('/shop04', [BootstrapController::class, 'shop04']);
+
+Route::get('/login', [Controller::class, 'login']);
+
+Route::get('/comment', [Controller::class, 'comment']);
+Route::get('/comment/save', [Controller::class, 'save_comment']);
+
 // controller寫法如上
 
 // 以下是一開始的寫法
