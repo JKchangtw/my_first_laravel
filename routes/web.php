@@ -39,6 +39,10 @@ Route::get('/login', [Controller::class, 'login']);
 
 Route::get('/comment', [Controller::class, 'comment']);
 Route::get('/comment/save', [Controller::class, 'save_comment']);
+// 刪留言step2
+Route::get('/comment/delete/{target}', [Controller::class, 'delete_comment']);
+Route::get('/comment/edit/{id}', [Controller::class, 'edit_comment']);
+Route::get('/comment/update/{id}', [Controller::class, 'update_comment']);
 
 // controller寫法如上
 

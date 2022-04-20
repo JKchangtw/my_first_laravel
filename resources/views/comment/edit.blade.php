@@ -1,6 +1,6 @@
 @extends('bootstrap.Template')
 @section('title')
-    留言板
+    編輯留言
 @endsection
 @section('css')
     #shopping-step01{
@@ -96,8 +96,8 @@
 
     .form .row.line {
     width: 100%;
-    height: 3px;
-    background-color: yellow ;
+    height: 2px;
+    background-color: white ;
     margin:0 auto;
     }
     .form .row.total{
@@ -146,15 +146,12 @@
     width:150px;
     height:30px;
     margin: 10px 0px 20px 10px;
-    text-decoration:underline
-
     }
     .form .comment .user{
     float:left;
-    width:100px;
+    width:50px;
     height:30px;
     margin-top:20px;
-    text-decoration:underline
     }
     .form .comment .time{
     float:right;
@@ -167,7 +164,7 @@
     clear:both;
     width:100%;
     height:100px;
-    border:4px double white;
+    border:1px dotted yellow;
     }
 
     form #content{
@@ -178,62 +175,32 @@
     <section class="form">
         <div class="container-xl">
 
-            <div class="row">
-                <h1>留言板</h1>
-            </div>
-            <div class="row"></div>
-
-            @foreach ($comment1 as $comments)
-            <div class="comment">
-                <div class="title">
-                    <h2>{{ $comments->title }}</h2>
-                </div>
-                <div class="user">
-                    <h5>{{ $comments->name }}</h5>
-                </div>
-                <div class="time">
-                    <p>{{ $comments->created_at }}</p>
-                </div>
-                <div class="content">
-                    <p>
-                        {{ $comments->content}}
-                    </p>
-                </div>
-                {{-- 新增編輯和刪除鈕 --}}
-                <div>
-                    {{-- 刪留言step1 --}}
-                    <a href="/comment/delete/{{$comments->id}}">刪除</a>
-                    <a href="/comment/edit/{{$comments->id}}">編輯</a>
-                </div>
-            </div>
-            <div class="row"></div>
-            <div class="row line"></div>
-            @endforeach
-
-
 
 
             <div class="row mt-5 mb-5">
-                <h1>歡迎底下留言討論</h1>
+                <h1>編輯留言</h1>
+                {{--測試印出--}}
+                {{-- <h5>{{$test}}</h5> --}}
             </div>
-            <form class="form" action="/comment/save" method="GET">
+            <form class="form" action="/comment/update/{{$test->id}}" method="GET">
                 <div class="row">
                     <h4>標題</h4>
                 </div>
                 <div class="row input">
-                    <input type="text" placeholder="請輸入標題" name="title">
+                    <input type="text" placeholder="請輸入標題" name="title" value="{{$test->title}}">
                 </div>
                 <div class="row">
                     <h4>姓名</h4>
                 </div>
                 <div class="row input">
-                    <input type="text" placeholder="請輸入姓名" name="name">
+                    <input type="text" placeholder="請輸入姓名" name="name" value="{{$test->name}}">
                 </div>
+
                 <div class="row">
                     <h4>內容</h4>
                 </div>
                 <div class="row input">
-                    <input type="text" placeholder="請輸入內容" name="content" id="content">
+                    <input type="text" placeholder="請輸入內容" name="content" id="content" value="{{$test->content}}">
                 </div>
                 <div class="row"></div>
                 <div class="row"></div>
@@ -249,7 +216,7 @@
                         </button>
 
                         <button class="submit" type="submit">
-                            送出評論
+                            儲存評論
                         </button>
                     </div>
                 </div>
