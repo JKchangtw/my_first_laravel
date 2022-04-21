@@ -141,24 +141,25 @@
     color:yellow;
     font-weight:bold;
     }
-    .form .comment .title{
+    .form .comment .title span{
     float:left;
-    width:150px;
-    height:30px;
-    margin: 10px 0px 20px 10px;
-    text-decoration:underline
-
+    {{-- width:250px; --}}
+    {{-- height:30px; --}}
+    margin: 10px 40px 20px 10px;
+    text-decoration:underline;
+    font-size:36px;
     }
-    .form .comment .user{
+    .form .comment .user span{
     float:left;
-    width:100px;
+    {{-- width:100px; --}}
     height:30px;
-    margin-top:20px;
-    text-decoration:underline
+    margin-top:25px;
+    text-decoration:underline;
+    font-size:24px;
     }
     .form .comment .time{
     float:right;
-    width:150px;
+    width:250px;
     height:20px;
     margin-top:25px;
 
@@ -186,13 +187,13 @@
             @foreach ($comment1 as $comments)
             <div class="comment">
                 <div class="title">
-                    <h2>{{ $comments->title }}</h2>
+                    <span>{{ $comments->title }}</span>
                 </div>
                 <div class="user">
-                    <h5>{{ $comments->name }}</h5>
+                    <span>{{ $comments->name }}</span>
                 </div>
                 <div class="time">
-                    <p>{{ $comments->created_at }}</p>
+                    <span>{{ $comments->created_at }}</span>
                 </div>
                 <div class="content">
                     <p>

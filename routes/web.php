@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\NewController;
 use App\Http\Controllers\BootstrapController;
-
+use App\Http\Controllers\BannerController;
 
 
 /*
@@ -72,3 +72,22 @@ Route::get('say', function () {
 // Route::get('/microsoft', function () {
 //     return view('MSFT_test');
 // });
+
+//banner管理相關頁面 手工建立版本(部分參考restfulAPI的規則 業界常用)
+// Route::get('/banner',[BannerController::class,'banner_index']);//總列表頁
+// Route::get('/banner/create',[BannerController::class,'banner_create']);//新增頁
+// Route::post('/banner/store',[BannerController::class,'banner_store']);//儲存頁
+// Route::get('/banner/edit/{id}',[BannerController::class,'banner_edit']);//編輯頁
+// Route::post('/banner/update/{id}',[BannerController::class,'banner_update']);//更新頁
+// Route::post('/banner/delete/{id}',[BannerController::class,'banner_delete']);//刪除頁
+
+
+//用group包起來 讓程式碼較精簡 好檢查
+Route::prefix('/banner')->group(function(){
+    Route::get('/',[BannerController::class,'banner_index']);
+    Route::get('/create',[BannerController::class,'banner_create']);
+    Route::post('/store',[BannerController::class,'banner_store']);
+    Route::get('/edit/{id}',[BannerController::class,'banner_edit']);
+    Route::post('/update/{id}',[BannerController::class,'banner_update']);
+    Route::post('/delete/{id}',[BannerController::class,'banner_delete']);
+});

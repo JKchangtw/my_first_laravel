@@ -10,8 +10,8 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 
 use Illuminate\Support\Facades\DB;
-
-
+// 以下引入model
+use App\Models\Comment;
 
 
 class Controller extends BaseController
@@ -38,9 +38,12 @@ class Controller extends BaseController
     }
 
     public function comment(){
-        //
-        $comment1 = DB::table('comments')->orderby('id','desc')->get();
+        //以下用DB
+        // $comment1 = DB::table('comments')->orderby('id','desc')->get();
 
+        // 以下用model操作
+        $comment1 = Comment::orderby('id','desc')->get();
+        // dd($comment1);
         return view('comment.comment',compact('comment1'));
     }
 
@@ -49,29 +52,36 @@ class Controller extends BaseController
     public function edit_comment($id){
         // 先測試有無抓到
         // dd($id);
-        $test = DB::table('comments')->where('id',$id)->first();//first從符合條件的其中 抓出第一筆(不會是陣列 直接抓出物件) get會抓出陣列(外面還包一層)
+        // $test = DB::table('comments')->where('id',$id)->first();
+        //first從符合條件的其中 抓出第一筆(不會是陣列 直接抓出物件) get會抓出陣列(外面還包一層)
         // 以下用find方法 只能針對主key(id)搜尋 以此情況來說 會比較直接且有效率
         // DB::table('comments')->find();
+
+        // model寫法
+        $test = Comment::where('id',$id)->first();
 
         // 有變數就要compact
         return view('comment.edit',compact('test'));
 
     }
     public function update_comment($id, Request $request){
-      //方法一 用DB 只能搭配WHERE
-      DB::table('comments')->where('id',$id)
-                           ->update([
-            'title'=>$request->title,
-            'name'=>$request->name,
-            'content'=>$request->content,
-            'email'=>'',
-        ]);
-        //方法二 用model 目前先不用這個方法
-        // $test = DB::table('comments')->find($id);//first從符合條件的其中 抓出第一筆(不會是陣列 直接抓出物件) get會抓出陣列(外面還包一層)
-        // $test ->title = $request ->title;
-        // $test ->name = $request ->name;
-        // $test ->content = $request ->content;
-        // $test->...
+    //   方法一 用DB 只能搭配Where
+    //   DB::table('comments')->where('id',$id)
+    //                        ->update([
+    //         'title'=>$request->title,
+    //         'name'=>$request->name,
+    //         'content'=>$request->content,
+    //         'email'=>'',
+    //     ]);
+
+        //方法二 用model
+        Comment::where('id',$id)
+        ->update([
+        'title'=>$request->title,
+        'name'=>$request->name,
+        'content'=>$request->content,
+        'email'=>'',
+         ]);
 
         return redirect('/comment');
 
@@ -81,21 +91,43 @@ class Controller extends BaseController
     public function delete_comment($target){
         // 先測試有無抓到
         // dd($target);
-        DB::table('comments')->where('id',$target)->delete();
-
+        // DB寫法
+        // DB::table('comments')->where('id',$target)->delete();
+        // model寫法
+        Comment::where('id',$target)->delete();
         return redirect('/comment');
     }
     // 以上
 
 
     public function save_comment(Request $request){
+        //用DB直接操作
+        // DB::table('comments')->insert([
+            //'id'=>1000, 會改資料庫id
+        //     'title'=>$request->title,
+        //     'name'=>$request->name,
+        //     'content'=>$request->content,
+        //     'email'=>'',
+        // ]);
 
-        DB::table('comments')->insert([
+
+        // 以下用model做(較正統的作法)
+        Comment::create([
+            // 'id'=>1000, 資料庫不會改1000
             'title'=>$request->title,
             'name'=>$request->name,
             'content'=>$request->content,
             'email'=>'',
         ]);
+        //或打包存在陣列裡面
+        // $data = [
+        //     'title'=>$request->title,
+        //     'name'=>$request->name,
+        //     'content'=>$request->content,
+        //     'email'=>'',
+        // ];
+        // Comments::create($data);
+
 
         return redirect('/comment');
 

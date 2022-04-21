@@ -44,21 +44,9 @@
             background-color: aqua;
         }
 
-        #shoppingcar {
-            border: unset;
-            background-color: unset;
-            font-size: 32px;
-
-        }
-        #user{
-            border: unset;
-            background-color: unset;
-            font-size: 36px;
-        }
-
         .banner {
             width: 100%;
-            height: 500px;
+            height: 600px;
         }
 
         .swiper {
@@ -608,6 +596,15 @@
 
         }
 
+        #shoppingcar {
+            border: unset;
+            background-color: unset;
+        }
+        #user{
+            border: unset;
+            background-color: unset;
+            font-size: 36px;
+        }
     </style>
 </head>
 
@@ -632,14 +629,6 @@
                             </div>
                             </button>
                             </form>
-
-                            <div class="col fs-3">
-                                <form action="/comment">
-                                    <button id="user" type="submit">
-                                        <i class="fa-solid fa-comment-dots"></i>
-                                    </button>
-                                </form>
-                            </div>
 
                             <div class="col fs-3">
                                 <form action="/login">
@@ -675,7 +664,7 @@
         </section>
         <section class="man">
 
-            <div class="container">
+            {{-- <div class="container">
                 <div class="row">
                     <h3>Raw Denim Heirloom Man Braid</h3>
                     <p>Blue bottle crucifix vinyl post-ironic four dollar toast vegan
@@ -683,85 +672,14 @@
                         indxgo juice poutine, ramps microdosing banh mi pug.</p>
                     <div id="line" class="row"></div>
                 </div>
-            </div>
+            </div> --}}
 
         </section>
         <section class="cardsection">
-            <div class="container-xxl d-flex justify-content-around">
-                @foreach ($data2 as $news)
-                    {{-- <div id="card" class="row" style="width: 18rem;">
-                        <div class="card">
-                            <div class="img">
-                                <img src="@if ($news->img == '' || $news->img == null) {{ asset('image/imgUpload.jpg') }}
-                            @else
-                                {{ $news->img }} @endif"
-                                    alt="">
-                                <img src="{{ $news->img }}" alt="">
-                             </div>
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $news->title }}</h5>
-                                <p class="card-text">{{ $news->content }}</p>
-                                <a href="#" class="btn btn-primary">Learn More &nbsp <i
-                                        class="fa-solid fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div> --}}
-                    {{-- 以上是沒有圖片時上預設圖片 --}}
-                    {{-- 以下測試沒有圖片時上字 --}}
-                    <div class="card text-center">
-                        @if ($news->img == '' || $news->img == null)
-                            <div class="no-img">{{ substr($news->title, 0, 1) }}</div>
-                        @else
-                            <div class="img">
-                                <img src="{{ $news->img }}" alt="">
-                            </div>
-                        @endif
-                        <div class="card-body">
-                            <h5 class='card-title'>{{ $news->title }}</h5>
-                            <p class='card-text'>{{ $news->content }}</p>
-                            <span class='card-text'>
-                                <small class='text-muted'>Learn More</small>
-                            </span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </div>
-                    </div>
-                @endforeach
-
-
-            </div>
-            {{-- 以下是沒有foreach時的其他兩張card --}}
-            {{-- <div class="card" style="width: 18rem;">
-                    <div class="img">
-                        <div class="imgimg">
-                            <img src="{{$news->img}}" alt="">
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{$news->title}}</h5>
-                        <p class="card-text">{{$news->content}}</p>
-                        <a href="#" class="btn btn-primary">Learn More &nbsp <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <div class="img">
-                        <div class="imgimg">
-                            <img src="{{$news->img}}" alt="">
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{$news->title}}</h5>
-                        <p class="card-text">{{$news->content}}</p>
-                        <a href="#" class="btn btn-primary">Learn More &nbsp <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div> --}}
-            <div class="row">
-                <button class="button">Button</button>
-            </div>
 
         </section>
         <section class="master">
-            <div class="container-fluid">
+            {{-- <div class="container-fluid">
                 <div class="row">
                     <div class="col-4 fs-2">Master Cleanse Reliac Heirloom</div>
                     <div class="col-8 fs-6">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
@@ -769,37 +687,10 @@
                         subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing
                         selfies heirloom.</div>
                 </div>
-            </div>
+            </div> --}}
         </section>
         <section id="gallery">
-            <div class="container-xxl">
-                <!-- <div class="row"></div> -->
-                <div class="row ">
-                    <div class="col-6 left d-flex flex-wrap justify-content-between">
-                        <div class="small">
-                            <img src="{{ $data1[0]->img }}" alt="">
-                        </div>
-                        <div class="small">
-                            <img src="{{ $data1[0]->img }}" alt="">
-                        </div>
-                        <div class="big">
-                            <img src="{{ $data1[1]->img }}" alt="">
-                        </div>
-                    </div>
-                    <div class="col-6 right  d-flex flex-wrap justify-content-between">
-                        <div class="big">
-                            <img src="{{ $data1[0]->img }}" alt="">
-                        </div>
-                        <div class="small">
-                            <img src="{{ $data1[1]->img }}" alt="">
-                        </div>
-                        <div class="small">
-                            <img src="{{ $data1[1]->img }}" alt="">
-                        </div>
-                    </div>
-                </div>
 
-            </div>
         </section>
         <section class="pricing">
             <div id="pricing" class="container-sm">
@@ -1239,10 +1130,7 @@
 
 
     <script>
-        function errorImg(img) {
-            img.src = "{{ $dataDefault[1]->img }}";
-            img.onerror = null;
-        }
+
     </script>
 
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>

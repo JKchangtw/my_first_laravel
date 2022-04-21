@@ -6,19 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property integer $id
- * @property string $name
- * @property string $email
- * @property string $email_verified_at
- * @property string $password
- * @property string $remember_token
  * @property string $created_at
  * @property string $updated_at
+ * @property string $img_path
+ * @property float $img_opacity
+ * @property integer $weight
  */
-class User extends Model
+class Banner extends Model
 {
+    //使用哪一個資料表單
+    protected $table ='banners';
     /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';
@@ -26,5 +26,5 @@ class User extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'email', 'email_verified_at', 'password', 'remember_token', 'created_at', 'updated_at'];
+    protected $fillable = ['created_at', 'updated_at', 'img_path', 'img_opacity', 'weight'];
 }
