@@ -85,9 +85,12 @@ Route::get('say', function () {
 //用group包起來 讓程式碼較精簡 好檢查
 Route::prefix('/banner')->group(function(){
     Route::get('/',[BannerController::class,'banner_index']);
+    //CREATE:新增和儲存是一組
     Route::get('/create',[BannerController::class,'banner_create']);
     Route::post('/store',[BannerController::class,'banner_store']);
+    //UPDATE:編輯和更新是一組
     Route::get('/edit/{id}',[BannerController::class,'banner_edit']);
     Route::post('/update/{id}',[BannerController::class,'banner_update']);
+
     Route::post('/delete/{id}',[BannerController::class,'banner_delete']);
 });

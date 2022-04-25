@@ -98,6 +98,11 @@
             background-color: unset;
             font-size: 36px;
         }
+        #banner_manage{
+            border: unset;
+            background-color: unset;
+            /* font-size: 36px; */
+        }
 
     </style>
 </head>
@@ -115,7 +120,11 @@
                             <div class="col">Blog</div>
                             <div class="col">Portfolio</div>
                             <div class="col">About</div>
-                            <div class="col">Contact</div>
+                            <div class="col">
+                                <form action="/banner">
+                                    <button id="banner_manage" type="submit">Banner管理</button>
+                                </form>
+                            </div>
                             <div class="col fs-3">
                                 <form action="/shop01">
                                     <button id="shoppingcar" type="submit">

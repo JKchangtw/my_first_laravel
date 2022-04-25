@@ -1,6 +1,6 @@
 @extends('bootstrap.Template')
 @section('title')
-    Banner新增頁面
+    Banner編輯
 @endsection
 @section('link')
 <link rel="stylesheet" href="https//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
@@ -99,6 +99,10 @@
         width:350px;
         height:200px;
     }
+    img{
+        width:350px;
+        height:200px;
+    }
     .banner_priority{
         width:200px;
     }
@@ -113,24 +117,27 @@
         <div class="container-fluid form">
 
             <div class="row">
-                <h1>新增Banner</h1>
+                <h1 style="color:blue;font-weight:bold">編輯Banner</h1>
             </div>
-            <div class="row line"></div>
+            <div class="row line mb-2"></div>
             {{-- enctype是為了讓我們可以傳圖片 --}}
-            <form class="d-flex flex-column" action="/banner/store" method="post" enctype="multipart/form-data">
+            <form class="d-flex flex-column" action="/banner/update/{{$banner->id}}" method="post" enctype="multipart/form-data">
                 @csrf
-                <label for="banner_img">BANNER圖片上傳</label>
+
+
+                <h4>目前圖片>>><img src="{{$banner->img_path}}" alt=""></h4>
+                <label for="banner_img">BANNER圖片更新</label>
                 <input type="file" name="banner_img" id="banner_img">
 
-                <label for="">透明度設定</label>
-                <input type="text" name="img_opacity" id="img_opacity">
+                <label for="">透明度更新</label>
+                <input type="text" name="img_opacity" id="img_opacity" value="{{$banner->img_opacity}}">
 
-                <label for="">權重設定</label>
-                <input type="number" name="weight" id="weight">
+                <label for="">權重更新</label>
+                <input type="number" name="weight" id="weight" value="{{$banner->weight}}">
 
                 <div class="button-box d-flex justifu-content-center">
-                    <button class="" type="reset" onclick="loction.href='/banner/'">取消</button>
-                    <button class="create">新增</button>
+                    <button class="">取消編輯</button>
+                    <button class="create">確定更新</button>
                 </div>
             </form>
 
