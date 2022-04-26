@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\NewController;
 use App\Http\Controllers\BootstrapController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\GoodsController;
 
 
 /*
@@ -93,4 +94,17 @@ Route::prefix('/banner')->group(function(){
     Route::post('/update/{id}',[BannerController::class,'banner_update']);
 
     Route::post('/delete/{id}',[BannerController::class,'banner_delete']);
+});
+
+
+Route::prefix('/goods')->group(function(){
+    Route::get('/',[GoodsController::class,'goods_index']);
+    //CREATE:新增和儲存是一組
+    Route::get('/create',[GoodsController::class,'goods_create']);
+    Route::post('/store',[GoodsController::class,'goods_store']);
+    //UPDATE:編輯和更新是一組
+    Route::get('/edit/{id}',[GoodsController::class,'goods_edit']);
+    Route::post('/update/{id}',[GoodsController::class,'goods_update']);
+
+    Route::post('/delete/{id}',[GoodsController::class,'goods_delete']);
 });

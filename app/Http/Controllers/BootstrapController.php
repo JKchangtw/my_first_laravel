@@ -15,8 +15,16 @@ class BootstrapController extends Controller
         $data3 = DB::table('news')->inRandomOrder()->take(3)->get();//抓隨機三筆
         // dd($data1, $data2, $data3);
         // dump('測試');
+        $bannerlist = DB::table('banners')->get();
+
+        $goodslist = DB::table('goods')->take(8)->orderby('id','desc')->get();
+        $goodsintro= DB::table('goods')->inRandomOrder()->take(1)->get();
+
         $dataDefault=DB::table('news')->take(2)->orderby('id','desc')->get();
-        return view('bootstrap.bootstrap',compact('data2','data1','data3','dataDefault'));
+        return view('bootstrap.bootstrap',compact('data2','data1','data3','dataDefault', 'goodslist', 'goodsintro', 'bannerlist'));
+
+
+
     }
     // public function login(){
     //     return view('bootstrap.login');

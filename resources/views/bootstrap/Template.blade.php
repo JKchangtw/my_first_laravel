@@ -36,7 +36,7 @@
             background-color: white;
         }
 
-        #func .col {
+        #func .container .row div {
             line-height: 80px;
         }
 
@@ -87,23 +87,41 @@
             transform: translateY(-50%);
             left: 10%;
         }
-
+        .functionForm{
+            position: relative;
+        }
+        .functionForm .functionBtn{
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
         #shoppingcar {
             border: unset;
             background-color: unset;
-            font-size: 32px;
+            font-size: 24px;
+        }
+        #commet{
+            border: unset;
+            background-color: unset;
+            font-size: 28px;
         }
         #user{
             border: unset;
             background-color: unset;
-            font-size: 36px;
+            font-size: 28px;
         }
         #banner_manage{
             border: unset;
             background-color: unset;
             /* font-size: 36px; */
         }
-
+        #goods_manage{
+            border: unset;
+            background-color: unset;
+        }
+       #logo form{
+          height: 80px;
+       }
     </style>
 </head>
 
@@ -111,39 +129,47 @@
     <nav>
         <div class="container-fluid">
             <div class="row">
-                <div id="logo" class="col-6">
-                    <img src="{{ asset('digipack_IMG/logo.jpg') }}" alt="">
+                <div id="logo" class="col-4">
+                    <form action="/bootstrap" class="ps-5" id="logoform">
+                        <button id='frontpageBtn' type='submit' style="border: unset" class="h-100">
+                            <img src="/digipack_IMG/logo.jpg" alt="" class="h-100">
+                        </button>
+                    </form>
                 </div>
-                <div id="func" class="col-6">
+                <div id="func" class="col-8">
                     <div class="container">
                         <div class="row">
-                            <div class="col">Blog</div>
-                            <div class="col">Portfolio</div>
-                            <div class="col">About</div>
-                            <div class="col">
+                            <div class="col-2">Blog</div>
+                            <div class="col-2">Portfolio</div>
+                            <div class="col-2">
+                                <form action="/goods">
+                                    <button id="goods_manage" type="submit">商品管理</button>
+                                </form>
+                            </div>
+                            <div class="col-2">
                                 <form action="/banner">
                                     <button id="banner_manage" type="submit">Banner管理</button>
                                 </form>
                             </div>
-                            <div class="col fs-3">
-                                <form action="/shop01">
-                                    <button id="shoppingcar" type="submit">
+                            <div class="col-1 fs-3">
+                                <form class="functionForm" action="/shop01">
+                                    <button id="shoppingcar" class='fuctionBtn' type="submit">
                                         <i class="fa-solid fa-cart-shopping"></i>
                             </div>
                             </button>
                             </form>
 
-                            <div class="col fs-3">
-                                <form action="/comment">
-                                    <button id="user" type="submit">
+                            <div class="col-1 fs-3">
+                                <form class="functionForm" action="/comment">
+                                    <button id="commet" class='fuctionBtn' type="submit">
                                         <i class="fa-solid fa-comment-dots"></i>
                                     </button>
                                 </form>
                             </div>
 
-                            <div class="col fs-3">
-                                <form action="/login">
-                                    <button id="user" type="submit">
+                            <div class="col-1 fs-3">
+                                <form class="functionForm" action="/login">
+                                    <button id="user" class='fuctionBtn' type="submit">
                                         <i class="fa-solid fa-circle-user"></i>
                                     </button>
                                 </form>

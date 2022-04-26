@@ -90,14 +90,14 @@
         height:2px;
         background-color:gray;
     }
-    .banner_img{
-        width:450px;
-        height:250px;
-        background-color:lightgray;
-    }
-    .banner_img img{
+    .goods_img{
         width:350px;
         height:200px;
+        background-color:lightgray;
+    }
+    .goods_img img{
+        width:300px;
+        height:175px;
     }
     .banner_priority{
         width:200px;
@@ -119,8 +119,11 @@
             {{-- enctype是為了讓我們可以傳圖片 --}}
             <form class="d-flex flex-column" action="/goods/store" method="post" enctype="multipart/form-data">
                 @csrf
-                <label for="goods_img">商品圖片上傳</label>
-                <input type="file" name="goods_img" id="goods_img">
+                <label for="goods_img">商品主圖片上傳</label>
+                <input type="file" name="goods_img" id="goods_img1" accept="image/*">
+                <label for="goods_img">商品次圖片上傳</label>
+                {{-- name後面加[] 陣列才能存多張 mutiple使得可上傳多張 accept="image/*"使得上傳資料時比較有效率 只有圖片會被看到 --}}
+                <input type="file" name="second_img[]" id="goods_img2" multiple accept="image/*">
 
                 <label for="">商品名稱</label>
                 <input type="text" name="goods_name" id="name">
@@ -132,11 +135,11 @@
                 <input type="number" name="goods_count" id="count">
 
                 <label for="">商品介紹</label>
-                <input type="number" name="goods_intro" id="intro">
+                <input type="text" name="goods_intro" id="intro">
 
                 <div class="button-box d-flex justifu-content-center">
                     <button class="" type="reset" onclick="loction.href='/goods/'">取消</button>
-                    <button class="create">新增</button>
+                    <button class="create">新增商品</button>
                 </div>
             </form>
 

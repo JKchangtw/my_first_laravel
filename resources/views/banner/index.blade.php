@@ -180,6 +180,7 @@
                                 {{-- <button class="btn del" onclick="document.querySelector('#deleteForm{{$banner->id}}').submit();">刪除</button> --}}
                                 <form action="/banner/delete/{{$banner->id}}" method="post" hidden id="deleteForm{{$banner->id}}">
                                     @csrf
+                                    
                                 </form>
 
                             </td>

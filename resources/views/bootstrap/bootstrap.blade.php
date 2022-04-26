@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Bootstrap首頁</title>
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -35,7 +35,7 @@
             background-color: white;
         }
 
-        #func .col {
+        #func .container .row div {
             line-height: 80px;
         }
 
@@ -50,7 +50,8 @@
             font-size: 32px;
 
         }
-        #user{
+
+        #user {
             border: unset;
             background-color: unset;
             font-size: 36px;
@@ -63,7 +64,7 @@
 
         .swiper {
             width: 100%;
-            height: 100%;
+            height: 600px;
         }
 
         .swiper-slide {
@@ -515,8 +516,8 @@
         }
 
         .cardsection4 img {
-            width: 210px;
-            height: 130px;
+            width: 100%;
+            height: 200px;
         }
 
         .map {
@@ -608,6 +609,49 @@
 
         }
 
+        .functionForm {
+            position: relative;
+        }
+
+        .functionForm .functionBtn {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #shoppingcar {
+            border: unset;
+            background-color: unset;
+            font-size: 24px;
+        }
+
+        #commet {
+            border: unset;
+            background-color: unset;
+            font-size: 28px;
+        }
+
+        #user {
+            border: unset;
+            background-color: unset;
+            font-size: 28px;
+        }
+
+        #banner_manage {
+            border: unset;
+            background-color: unset;
+            /* font-size: 36px; */
+        }
+
+        #goods_manage {
+            border: unset;
+            background-color: unset;
+        }
+
+        #logo form {
+            height: 80px;
+        }
+
     </style>
 </head>
 
@@ -615,25 +659,38 @@
     <nav>
         <div class="container-fluid">
             <div class="row">
-                <div id="logo" class="col-6">
-                    <img src="/digipack_IMG/logo.jpg" alt="">
+                <div id="logo" class="col-4">
+                    <form action="/bootstrap" class="ps-5">
+                        <button id='frontpageBtn' type='submit' style="border: unset" class="h-100">
+                            <img src="/digipack_IMG/logo.jpg" alt="" class="h-100">
+                        </button>
+                    </form>
                 </div>
-                <div id="func" class="col-6">
+                <div id="func" class="col-8">
                     <div class="container">
                         <div class="row">
-                            <div class="col">Blog</div>
-                            <div class="col">Portfolio</div>
-                            <div class="col">About</div>
-                            <div class="col">Contact</div>
-                            <div class="col fs-3">
+                            <div class="col-2">Blog</div>
+                            <div class="col-2">Portfolio</div>
+                            <div class="col-2">
+                                <form action="/goods">
+                                    <button id="goods_manage" type="submit">商品管理</button>
+                                </form>
+                            </div>
+                            <div class="col-2">
+                                <form action="/banner">
+                                    <button id="banner_manage" type="submit">Banner管理</button>
+                                </form>
+                            </div>
+                            <div class="col-1 fs-3">
                                 <form action="/shop01">
                                     <button id="shoppingcar" type="submit">
                                         <i class="fa-solid fa-cart-shopping"></i>
-                            </div>
-                            </button>
-                            </form>
 
-                            <div class="col fs-3">
+                                    </button>
+                                </form>
+                            </div>
+
+                            <div class="col-1 fs-3">
                                 <form action="/comment">
                                     <button id="user" type="submit">
                                         <i class="fa-solid fa-comment-dots"></i>
@@ -641,7 +698,7 @@
                                 </form>
                             </div>
 
-                            <div class="col fs-3">
+                            <div class="col-1 fs-3">
                                 <form action="/login">
                                     <button id="user" type="submit">
                                         <i class="fa-solid fa-circle-user"></i>
@@ -658,15 +715,17 @@
         <section class="banner">
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="{{ asset('image/pizza-3007395__480.jpg') }}" alt="">
-                    </div>
-                    <div class="swiper-slide">
+                    @foreach ($bannerlist as $banners)
+                        <div class="swiper-slide">
+                            <img src="{{ $banners->img_path }}" alt="">
+                        </div>
+                    @endforeach
+                    {{-- <div class="swiper-slide">
                         <img src="{{ asset('image/gluten-free-thin-crust-pizza.jpg') }}" alt="">
                     </div>
                     <div class="swiper-slide">
                         <img src="{{ asset('image/Gluten-Free-Pizza-3.2.jpg') }}" alt="">
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
@@ -951,7 +1010,8 @@
                         <p class="card-text">Blue bottle crucifix vinyl post-ironic four dollar toast vegan
                             taxidermy.
                             Gastropub indxgo juice poutine.</p>
-                        <a href="#" class="btn btn-primary">Learn More &nbsp <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="#" class="btn btn-primary">Learn More &nbsp <i
+                                class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="row line"></div>
@@ -994,12 +1054,12 @@
         <section class="merch">
             <div class="container">
                 <div class="row d-flex flex-column flex-lg-row">
-                    <div class="col-12 col-md-6 h-auto ">
-                        <img src="/digipack_IMG/400x400.jpg" id="merch-img" class="h-100">
+                    <div class="col-md-7 h-auto ">
+                        <img src="{{ $goodsintro[0]->goods_img }}" id="merch-img" class="w-100">
                     </div>
-                    <div id="merch-right" class="col-12 col-md-6 pt-4 pb-4 pe-0 ps-5 h-100">
+                    <div id="merch-right" class="col-md-5 pt-4 pb-4 pe-0 ps-5 h-100">
                         <span class="subtitle">BRAND NAME</span>
-                        <h3>The Catcher in the Rye</h3>
+                        <h3>{{ $goodsintro[0]->goods_name }}</h3>
                         <div class="review d-flex">
                             <div class="stars d-flex me-2 align-items-center">
                                 <div class="star"><i class="fa-solid fa-star"></i></div>
@@ -1012,10 +1072,7 @@
                             <div class="social"></div>
                         </div>
                         <div class="content">
-                            Fam locavore kickstarter distillery. Mixtape chillwave tumeric sriracha taximy chia
-                            microdosing tilde DIY. XOXO fam indxgo juiceramps cornhole raw denim forage brooklyn.
-                            Everyday carry +1 seitan poutine tumeric. Gastropub blue bottle austin listicle pour-over,
-                            neutra jean shorts keytar banjo tattooed umami cardigan.
+                            {{ $goodsintro[0]->goods_intro }}
                         </div>
                         <div class="choice d-flex mt-3 mb-3 border-bottom pb-3">
                             <div class="color d-flex align-items-center">
@@ -1035,7 +1092,7 @@
                             </div>
                         </div>
                         <div class="add d-flex flex-row justify-content-between">
-                            <div class="price">$58.00</div>
+                            <div class="price">${{ $goodsintro[0]->goods_price }}</div>
                             <div class="add-right d-flex">
                                 <button type="button" class="">Button</button>
                                 <div class="fav ms-2">
@@ -1050,6 +1107,19 @@
         <section class="cardsection4">
             <div class="container-fluid">
                 <div class="row d-flex flex-row justify-content-around">
+                    @foreach ($goodslist as $goods)
+                        <div class="col-3 card">
+                            <img src="{{ $goods->goods_img }}" class="card-img-btm1" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">CATEGORY</h5>
+                                <p class="card-text">{{ $goods->goods_name }}</p>
+                                <p class="card-text"><small
+                                        class="text-muted">{{ $goods->goods_price }}</small></p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                {{-- <div class="row d-flex flex-row justify-content-around">
                     <div class="col-2 card">
                         <img src="/digipack_IMG/420x260.jpg" class="card-img-btm1" alt="...">
                         <div class="card-body">
@@ -1082,77 +1152,7 @@
                             <p class="card-text"><small class="text-muted">$18.40</small></p>
                         </div>
                     </div>
-                    {{-- <div class="col-6 d-flex flex-row justify-content-around">
-                        <div class="col-6 card">
-                            <img src="/digipack_IMG/420x260.jpg" class="card-img-top1" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">CATEGORY</h5>
-                                <p class="card-text">The Catalyzer</p>
-                                <p class="card-text"><small class="text-muted">$16.00</small></p>
-                            </div>
-                        </div>
-                        <div class="col-6 card">
-                            <img src="/digipack_IMG/420x260.jpg" class="card-img-top2" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">CATEGORY</h5>
-                                <p class="card-text">Shooting Stars</p>
-                                <p class="card-text"><small class="text-muted">$21.15</small></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 d-flex flex-row justify-content-around">
-                        <div class="col-6 card">
-                            <img src="/digipack_IMG/420x260.jpg" class="card-img-top3" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">CATEGORY</h5>
-                                <p class="card-text">Neptune</p>
-                                <p class="card-text"><small class="text-muted">$12.00</small></p>
-                            </div>
-                        </div>
-                        <div class="col-6 card">
-                            <img src="/digipack_IMG/420x260.jpg" class="card-img-top4" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">CATEGORY</h5>
-                                <p class="card-text">The 400 Blows</p>
-                                <p class="card-text"><small class="text-muted">$18.40</small></p>
-                            </div>
-                        </div>
-                    </div> --}}
-                </div>
-                <div class="row d-flex flex-row justify-content-around">
-                    <div class="col-2 card">
-                        <img src="/digipack_IMG/420x260.jpg" class="card-img-btm1" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">CATEGORY</h5>
-                            <p class="card-text">The Catalyzer</p>
-                            <p class="card-text"><small class="text-muted">$16.00</small></p>
-                        </div>
-                    </div>
-                    <div class="col-2 card">
-                        <img src="/digipack_IMG/420x260.jpg" class="card-img-btm2" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">CATEGORY</h5>
-                            <p class="card-text">Shooting Stars</p>
-                            <p class="card-text"><small class="text-muted">$21.15</small></p>
-                        </div>
-                    </div>
-                    <div class="col-2 card">
-                        <img src="/digipack_IMG/420x260.jpg" class="card-img-btm3" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">CATEGORY</h5>
-                            <p class="card-text">Neptune</p>
-                            <p class="card-text"><small class="text-muted">$12.00</small></p>
-                        </div>
-                    </div>
-                    <div class="col-2 card">
-                        <img src="/digipack_IMG/420x260.jpg" class="card-img-btm4" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">CATEGORY</h5>
-                            <p class="card-text">The 400 Blows</p>
-                            <p class="card-text"><small class="text-muted">$18.40</small></p>
-                        </div>
-                    </div>
-                </div>
+                </div> --}}
             </div>
         </section>
         <section class="map">
@@ -1255,6 +1255,8 @@
             },
             pagination: {
                 el: ".swiper-pagination",
+                clickable: true,
+
             },
             mousewheel: true,
             keyboard: true,
@@ -1263,6 +1265,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
+    <script>
+
     </script>
 </body>
 
