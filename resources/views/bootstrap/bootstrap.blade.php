@@ -196,8 +196,9 @@
         }
 
         #gallery .col-6 {
-            height: 800px;
-            background-color: antiquewhite;
+            height: 700px;
+            background-color: whitesmoke;
+            padding-top:25px;
         }
 
         #gallery img {
@@ -835,25 +836,25 @@
                 <!-- <div class="row"></div> -->
                 <div class="row ">
                     <div class="col-6 left d-flex flex-wrap justify-content-between">
-                        <div class="small">
-                            <img src="{{ $data1[0]->img }}" alt="">
+                        <div class="small h-45">
+                            <img src="{{ $data1[0]->img }}" alt="" class="h-100">
                         </div>
-                        <div class="small">
-                            <img src="{{ $data1[0]->img }}" alt="">
+                        <div class="small h-45">
+                            <img src="{{ $data1[0]->img }}" alt="" class="h-100">
                         </div>
-                        <div class="big">
-                            <img src="{{ $data1[1]->img }}" alt="">
+                        <div class="big h-45">
+                            <img src="{{ $data1[1]->img }}" alt="" class="h-100">
                         </div>
                     </div>
                     <div class="col-6 right  d-flex flex-wrap justify-content-between">
-                        <div class="big">
-                            <img src="{{ $data1[0]->img }}" alt="">
+                        <div class="big h-45">
+                            <img src="{{ $data1[0]->img }}" alt="" class="h-100">
                         </div>
-                        <div class="small">
-                            <img src="{{ $data1[1]->img }}" alt="">
+                        <div class="small h-45">
+                            <img src="{{ $data1[1]->img }}" alt="" class="h-100">
                         </div>
-                        <div class="small">
-                            <img src="{{ $data1[1]->img }}" alt="">
+                        <div class="small h-45">
+                            <img src="{{ $data1[1]->img }}" alt="" class="h-100">
                         </div>
                     </div>
                 </div>

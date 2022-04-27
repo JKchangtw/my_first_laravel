@@ -52,19 +52,20 @@ class GoodsController extends Controller
             'goods_intro' => $request->goods_intro,
 
         ]);
-        //次要圖片上傳
-        foreach($request->second_img as $index=>$element){
-            $path = Storage::disk('local')->put('public/goods', $element);
-            $path = str_replace("public","storage", $path);
+        //次要圖片 多張上傳
+        if($request->hasfile('second_img')){
+            foreach($request->second_img as $index=>$element){
+                $path = Storage::disk('local')->put('public/goods', $element);
+                $path = str_replace("public","storage", $path);
 
                //建
-            Product_img::create([
-            'img_path'=> '/'.$path ,
-            'product_id'=> $product->id,
-            ]);
+                Product_img::create([
+                'img_path'=> '/'.$path ,
+                'product_id'=> $product->id,
+                ]);
 
-        };
-
+            };
+        }
 
         return redirect('/goods');
     }
@@ -108,6 +109,22 @@ class GoodsController extends Controller
         }
         //***這邊以上
 
+        //次要圖片處理
+        if($request->hasfile('second_img')){
+            foreach($request->second_img as $index=>$element){
+                $path = Storage::disk('local')->put('public/goods', $element);
+                $path = str_replace("public","storage", $path);
+
+                Product_img::create([
+                'img_path'=> '/'.$path ,
+                'product_id'=> $goods->id,
+                ]);
+
+            };
+         }
+
+
+
         $goods->goods_name = $request->goods_name;
         $goods->goods_price = $request->goods_price;
         $goods->goods_count = $request->goods_count;
@@ -123,17 +140,44 @@ class GoodsController extends Controller
 
     public function goods_delete($id){
         //利用id找到要刪除的資料 並且連同相關檔案一起刪除
-
         // dd($id);
         $goods = goods::find($id);
 
+        //整組次要圖片刪除 操作如下
+        //找出所有 要被刪掉的商品的次要圖片 在Product_img裡面
+        //找出product_id 和Goods裡面主要圖片的id(傳進來的) 一樣的
+        $imgs = Product_img::where('product_id' , $id)->get();
+        //先get出來 然後因為可能不只一筆次要圖片 所以利用foreach
+        foreach($imgs as $key=>$value){
+            $target = str_replace("storage","public",$value->img_path);
+            Storage::disk('local')->delete($target);//刪圖片
+            //刪資料
+            $value->delete();
+        };
+
         // 先刪圖片 再刪資料
-        $target = str_replace("/storage","public",$goods->img_path);
+        $target = str_replace("storage","public",$goods->goods_img);
         //將路徑中的storage置換成public 才能讓大家看到
         Storage::disk('local')->delete($target);// 刪掉舊的圖片
 
         $goods->delete();
         // 重新導向(送出新的request)到列表頁
         return redirect('/goods');
+    }
+
+    //從form表單傳出的 傳到路由 再傳入$img_id?
+    public function delete_img($img_id){
+        //藉由id去找到要刪除的次要圖片 model::
+        $img = Product_img::find($img_id);
+
+        $target = str_replace("storage","public",$img->img_path);
+        // dd($target);
+        Storage::disk('local')->delete($target);//刪圖片
+
+        //資料刪除之前先把商品id取出來 頁面redirect會用到
+        $product_id = $img->product_id;
+        $img->delete();//把資料刪除
+
+        return redirect('/goods/edit/'.$product_id);
     }
 }

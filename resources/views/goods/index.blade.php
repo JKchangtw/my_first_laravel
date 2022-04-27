@@ -188,77 +188,17 @@
                             <td>
                                 {{-- <a href="/good/delete/{{ $comments->id }}">刪除</a> --}}
                                 {{-- <a href="/good/edit/{{ $good->id }}">編輯</a> --}}
+
                                 {{-- button onclick寫法 --}}
                                 <button class="btn edit" onclick="location.href='/goods/edit/{{$good->id}}'">編輯</button>
-                                <button class="btn del" onclick="delete_good({{$good->id}})">刪除</button>
+                                <button class="btn del" onclick="delete_good( {{$good->id}} )">刪除</button>
                                 {{-- 或像以下直接把JS寫在裡面 --}}
                                 {{-- <button class="btn del" onclick="document.querySelector('#deleteForm{{$good->id}}').submit();">刪除</button> --}}
                                 <form action="/goods/delete/{{$good->id}}" method="post" hidden id="deleteForm{{$good->id}}">
                                     @csrf
                                 </form>
-
                             </td>
                         </tr>
-                        {{-- <tr>
-                        <td>
-                            <div class="banner_img">
-                                <img src="{{ asset('image/Gluten-Free-Pizza-3.2.jpg') }}" alt="">
-                            </div>
-                        </td>
-                        <td class="banner_priority">3</td>
-                        <td>
-                            <button>編輯</button>
-                            <button>刪除</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="banner_img">
-                                <img src="{{ asset('image/gluten-free-thin-crust-pizza.jpg') }}" alt="">
-                            </div>
-                        </td>
-                        <td class="banner_priority">2</td>
-                        <td>
-                            <button>編輯</button>
-                            <button>刪除</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="banner_img">
-                                <img src="{{ asset('image/gluten-free-thin-crust-pizza.jpg') }}" alt="">
-                            </div>
-                        </td>
-                        <td class="banner_priority">2</td>
-                        <td>
-                            <button>編輯</button>
-                            <button>刪除</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="banner_img">
-                                <img src="{{ asset('image/gluten-free-thin-crust-pizza.jpg') }}" alt="">
-                            </div>
-                        </td>
-                        <td class="banner_priority">2</td>
-                        <td>
-                            <button>編輯</button>
-                            <button>刪除</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="banner_img">
-                                <img src="{{ asset('image/gluten-free-thin-crust-pizza.jpg') }}" alt="">
-                            </div>
-                        </td>
-                        <td class="banner_priority">2</td>
-                        <td>
-                            <button>編輯</button>
-                            <button>刪除</button>
-                        </td>
-                    </tr> --}}
                     @endforeach
                 </tbody>
             </table>

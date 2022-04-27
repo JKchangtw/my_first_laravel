@@ -107,4 +107,8 @@ Route::prefix('/goods')->group(function(){
     Route::post('/update/{id}',[GoodsController::class,'goods_update']);
 
     Route::post('/delete/{id}',[GoodsController::class,'goods_delete']);
+
+    //刪除次要圖片 接收次要商品圖片的id
+    Route::delete('/delete_img/{img_id}',[GoodsController::class,'delete_img']);
+
 });

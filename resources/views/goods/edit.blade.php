@@ -126,16 +126,26 @@
                 @csrf
 
 
-                <h4>目前主圖片>>><img src="{{ $goods->goods_img }}" alt=""></h4>
-                <label for="goods_img">商品圖片更新</label>
+                <h3>目前主圖片>>></h3>
+                <img src="{{ $goods->goods_img }}" alt="">
+                <label for="goods_img">商品主圖片更新</label>
                 <input type="file" name="goods_img" id="goods_img">
                 <h3>目前次圖片>>></h3>
                 <div class='d-flex flex-wrap align-items-start'>
                     {{-- 直接呼叫要關聯的那個函式 --}}
                     @foreach ($goods->imgs as $item)
-                        <img src="{{($item->img_path)}}" alt="" class="me-3" style="width:150px">
+                        <div class="d-flex flex-column me-3 " style="width:150px" id="sup_img{{$item->id}}">
+                            <img src="{{ $item->img_path }}" alt="" class="w-100">
+                            {{-- *用form表單做刪單張次要圖片 不是最好的作法 so先註解--}}
+                            {{-- *<button class="btn btn-danger w-100" type='button' onclick="document.querySelector('#deleteForm{{$item->id}}').submit();">刪除圖片</button> --}}
+                            <button class="btn btn-danger w-100" type='button' onclick="delete_img({{$item->id}});">刪除圖片</button>
+                        </div>
                     @endforeach
                 </div>
+                <label for="goods_img">商品次圖片上傳</label>
+                <input type="file" name="second_img[]" id="goods_img2" multiple accept="image/*" p>
+
+
                 <label for="">商品名稱更新</label>
                 <input type="text" name="goods_name" id="goods_name" value="{{ $goods->goods_name }}">
 
@@ -153,22 +163,55 @@
                     <button class="create">確定更新</button>
                 </div>
             </form>
-
-
-
-
-
-
+            {{-- *用form表單做法 先註解 --}}
+            {{-- @foreach ($goods->imgs as $item)
+            <form action="/goods/delete_img/{{$item->id}}" method="post" hidden id="deleteForm{{$item->id}}">
+                @csrf
+                @method('DELETE')
+             </form>
+            @endforeach --}}
         </div>
-
 
     </section>
 
 @section('script')
+    <script>
+        function delete_img(id){
+            // console.log('')
+
+            //準備表單以及內部的資料
+            let formData = new FormData();
+            //要傳給後端的參數key和值value
+            formData.append('_method', 'DELETE');
+            formData.append('_token', '{{csrf_token()}}');
+            
+            //將準備好的表單藉由fetch送到後台
+            fetch("/goods/delete_img/"+id,{
+                method: "POST",
+                body: formData
+            })
+            
+            //fetch非同步 不會主動更新頁面 所以
+            .then(function(response){
+                 //做法一 用reload重整頁面
+                // location.reload();
+                //做法二 成功將資料庫刪除資料後 將自己的HTML消除
+                let element = document.querySelector('#sup_img'+id);
+                element.parentNode.removeChild(element);
+            }) 
+             ;
+           
+        }
+
+    </script>
+
+
+
     <script src="jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    
 @endsection
 
 @endsection
