@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Goods;
+use App\Models\Product_img;
 
 /**
  * @property integer $id
@@ -27,7 +29,7 @@ class Product_img extends Model
 
     public function product(){
         //一對多 關連到另外一個class        ,被關聯的資料,自己的資料
-        // return $this->hasOne(Goods::class,'id','product_id');
+        // $this->hasOne(Goods::class,'id','product_id');
 
         //或以下較正統寫法
         //belongsTo /belongsToMany格式 ,自己的資料,被關聯的資料

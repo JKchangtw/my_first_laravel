@@ -131,7 +131,8 @@
                 <input type="file" name="goods_img" id="goods_img">
                 <h3>目前次圖片>>></h3>
                 <div class='d-flex flex-wrap align-items-start'>
-                    @foreach ($goods->img as $item)
+                    {{-- 直接呼叫要關聯的那個函式 --}}
+                    @foreach ($goods->imgs as $item)
                         <img src="{{($item->img_path)}}" alt="" class="me-3" style="width:150px">
                     @endforeach
                 </div>

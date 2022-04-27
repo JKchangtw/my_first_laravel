@@ -41,6 +41,7 @@ class GoodsController extends Controller
         // 呼叫Model create 前面對到資料庫欄位 =>對到request
 
         //將路徑中的public置換成storage
+        //主要圖片上傳
         $path = str_replace("public","storage", $path);
 
         $product = goods::create([
@@ -51,14 +52,14 @@ class GoodsController extends Controller
             'goods_intro' => $request->goods_intro,
 
         ]);
+        //次要圖片上傳
         foreach($request->second_img as $index=>$element){
             $path = Storage::disk('local')->put('public/goods', $element);
-
             $path = str_replace("public","storage", $path);
 
                //建
             Product_img::create([
-            'img_path'=> $path ,
+            'img_path'=> '/'.$path ,
             'product_id'=> $product->id,
             ]);
 
