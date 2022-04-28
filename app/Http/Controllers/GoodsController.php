@@ -14,18 +14,21 @@ class GoodsController extends Controller
     public function goods_index(){
         // 將所有Goods Model內的資料拿出來
         //然後輸出到列表頁上
-          $goods = Goods::get();
-
+            $goods = Goods::get();
+            $header='商品列表頁';
+            $slot='';
         // return view('goods.index');
 
-        return view('goods.index',compact('goods'));
+        return view('goods.index',compact('goods','header','slot'));
     }
 
 
 
     public function goods_create(){
         //準備新增用的表單給使用者填寫
-        return view('goods.create');
+            $header='商品新增頁';
+            $slot='';
+        return view('goods.create',compact('header','slot'));
     }
 
 
@@ -87,7 +90,9 @@ class GoodsController extends Controller
         // $path = str_replace("public","storage", $path);
 
         // dd($which->img_path);
-        return view('goods.edit',compact('goods')) ;
+            $header='商品編輯頁';
+            $slot='';
+        return view('goods.edit',compact('goods','header','slot')) ;
     }
 
     public function goods_update(Request $request, $id){

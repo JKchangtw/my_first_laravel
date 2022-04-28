@@ -72,7 +72,7 @@
             }
 
             .form .logo2 {
-                background-image: url(/digipack圖片/logo4.jpg);
+                background-image:url(/digipack_IMG/logo4.jpg);
                 width: 80px;
                 height: 80px;
                 background-position: center;
@@ -117,7 +117,7 @@
         }
 
         .form .logo1 {
-            background-image: url(/digipack圖片/logo3.jpg);
+            background-image: url(/digipack_IMG/logo3.jpg);
             width: 80px;
             height: 80px;
             background-position: center;
@@ -145,12 +145,27 @@
                 <div class="google ms-2 me-2">G+</div>
                 <div class="link">in</div>
             </div>
-            <form action="./bootstrap.html" class="d-flex w-60 flex-column w-75 align-items-center">
+            {{-- 原本的form --}}
+            {{-- <form action="./bootstrap.html" class="d-flex w-60 flex-column w-75 align-items-center">
                 <span class="mb-3">or use email your account</span>
                 <input type="text" name="" id="" placeholder="Email" class="w-100 p-3 mb-4">
                 <input type="password" name="" id="" placeholder="Password" class="w-100 p-3 mb-4">
                 <a href="" class="mb-2 align-self-end">Forget your password</a>
                 <button class="">SIGN IN</button>
+            </form> --}}
+            <form method="POST" action="{{ route('login') }}" class="d-flex w-60 flex-column w-75 align-items-center">
+                @csrf
+                <span class="mb-3">or use email your account</span>
+                <input type="text" name="email" id="" placeholder="Email" class="w-100 p-3 mb-4">
+                <input type="password" name="password" id="" placeholder="Password" class="w-100 p-3 mb-4">
+                <div class="block mt-4">
+                    <label for="remember_me" class="inline-flex items-center">
+                        <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
+                        <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                    </label>
+                </div>
+                <a href="{{ route('password.request') }}" class="mb-2 align-self-end">Forget your password</a>
+                <button type='submit' class="">SIGN IN</button>
             </form>
             <div class="icons fs-3">
                 <i class="bi bi-twitter"></i>

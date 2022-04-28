@@ -1,8 +1,11 @@
-@extends('bootstrap.Template')
+{{-- @extends('bootstrap.Template') --}}
+@extends('layouts.app')
 @section('title')
     Banner新增頁面
 @endsection
 @section('link')
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <link rel="stylesheet" href="https//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 @endsection
@@ -129,8 +132,8 @@
                 <input type="number" name="weight" id="weight">
 
                 <div class="button-box d-flex justifu-content-center">
-                    <button class="" type="reset" onclick="loction.href='/banner/'">取消</button>
-                    <button class="create">新增</button>
+                    <button class="btn btn-danger" type="reset" onclick="loction.href='/banner'">取消</button>
+                    <button class="create btn btn-primary">新增</button>
                 </div>
             </form>
 

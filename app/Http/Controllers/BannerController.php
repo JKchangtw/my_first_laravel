@@ -15,17 +15,21 @@ class BannerController extends Controller
         // 將所有banner資料從資料庫拿出來
         //然後輸出到列表頁上
           $banners = Banner::get();
-
+          $header='Banner管理頁';
+          $slot='';
         // return view('banner.index');
 
-        return view('banner.index',compact('banners'));
+        return view('banner.index',compact('banners','header','slot'));
     }
 
 
 
     public function banner_create(){
         //準備新增用的表單給使用者填寫
-        return view('banner.create');
+
+        $header='Banner新增頁';
+        $slot='';
+        return view('banner.create',compact('header','slot'));
     }
 
 
@@ -70,7 +74,11 @@ class BannerController extends Controller
         // $path = str_replace("public","storage", $path);
 
         // dd($which->img_path);
-        return view('banner.edit',compact('banner')) ;
+
+        $header='Banner編輯頁';
+        $slot='';
+
+        return view('banner.edit',compact('banner','header','slot')) ;
     }
 
     public function banner_update(Request $request, $id){

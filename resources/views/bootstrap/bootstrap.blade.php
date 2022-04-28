@@ -48,7 +48,7 @@
             border: unset;
             background-color: unset;
             font-size: 32px;
-
+            height: 80px;
         }
 
         #user {
@@ -624,6 +624,7 @@
             border: unset;
             background-color: unset;
             font-size: 24px;
+            height: 80px;
         }
 
         #commet {
@@ -670,9 +671,11 @@
                 <div id="func" class="col-8">
                     <div class="container">
                         <div class="row">
+                            <div class="col-3"></div>
+
                             <div class="col-2">Blog</div>
                             <div class="col-2">Portfolio</div>
-                            <div class="col-2">
+                            {{-- <div class="col-2">
                                 <form action="/goods">
                                     <button id="goods_manage" type="submit">商品管理</button>
                                 </form>
@@ -681,16 +684,7 @@
                                 <form action="/banner">
                                     <button id="banner_manage" type="submit">Banner管理</button>
                                 </form>
-                            </div>
-                            <div class="col-1 fs-3">
-                                <form action="/shop01">
-                                    <button id="shoppingcar" type="submit">
-                                        <i class="fa-solid fa-cart-shopping"></i>
-
-                                    </button>
-                                </form>
-                            </div>
-
+                            </div> --}}
                             <div class="col-1 fs-3">
                                 <form action="/comment">
                                     <button id="user" type="submit">
@@ -698,7 +692,31 @@
                                     </button>
                                 </form>
                             </div>
+                            <div class="col-1">
+                                <form action="/shop01">
+                                    <button id="shoppingcar" type="submit">
+                                        <i class="fa-solid fa-cart-shopping"></i>
 
+                                    </button>
+                                </form>
+                            </div>
+                            @auth
+                            <div class="col-2">
+                                <a href="">{{Auth::user()->name}}，您好</a>
+                            </div>
+                            <div class="col-1">
+                                {{-- 用a標籤做 --}}
+                                {{-- <a href="">{{}}</a> --}}
+                                {{-- 用button做 --}}
+                                <form action="{{route('logout')}}" method="POST" >
+                                    @csrf
+                                    <button id="user" type="submit" style="font-size: 16px">
+                                       登出
+                                    </button>
+                                </form>
+                            </div>
+                            @endauth
+                            @guest
                             <div class="col-1 fs-3">
                                 <form action="/login">
                                     <button id="user" type="submit">
@@ -706,6 +724,7 @@
                                     </button>
                                 </form>
                             </div>
+                            @endguest
                         </div>
                     </div>
                 </div>

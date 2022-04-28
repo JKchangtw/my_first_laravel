@@ -1,8 +1,10 @@
-@extends('bootstrap.Template')
+@extends('layouts.app')
 @section('title')
     商品編輯頁
 @endsection
 @section('link')
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 @endsection
@@ -134,11 +136,12 @@
                 <div class='d-flex flex-wrap align-items-start'>
                     {{-- 直接呼叫要關聯的那個函式 --}}
                     @foreach ($goods->imgs as $item)
-                        <div class="d-flex flex-column me-3 " style="width:150px" id="sup_img{{$item->id}}">
+                        <div class="d-flex flex-column me-3 " style="width:150px" id="sup_img{{ $item->id }}">
                             <img src="{{ $item->img_path }}" alt="" class="w-100">
-                            {{-- *用form表單做刪單張次要圖片 不是最好的作法 so先註解--}}
+                            {{-- *用form表單做刪單張次要圖片 不是最好的作法 so先註解 --}}
                             {{-- *<button class="btn btn-danger w-100" type='button' onclick="document.querySelector('#deleteForm{{$item->id}}').submit();">刪除圖片</button> --}}
-                            <button class="btn btn-danger w-100" type='button' onclick="delete_img({{$item->id}});">刪除圖片</button>
+                            <button class="btn btn-danger w-100" type='button'
+                                onclick="delete_img({{ $item->id }});">刪除圖片</button>
                         </div>
                     @endforeach
                 </div>
@@ -159,8 +162,8 @@
                 <input type="text" name="goods_intro" id="goods_intro" value="{{ $goods->goods_intro }}">
 
                 <div class="button-box d-flex justifu-content-center">
-                    <button class="">取消編輯</button>
-                    <button class="create">確定更新</button>
+                    <button class="btn btn-danger">取消編輯</button>
+                    <button class="create btn btn-primary">確定更新</button>
                 </div>
             </form>
             {{-- *用form表單做法 先註解 --}}
@@ -176,33 +179,31 @@
 
 @section('script')
     <script>
-        function delete_img(id){
+        function delete_img(id) {
             // console.log('')
 
             //準備表單以及內部的資料
             let formData = new FormData();
             //要傳給後端的參數key和值value
             formData.append('_method', 'DELETE');
-            formData.append('_token', '{{csrf_token()}}');
-            
-            //將準備好的表單藉由fetch送到後台
-            fetch("/goods/delete_img/"+id,{
-                method: "POST",
-                body: formData
-            })
-            
-            //fetch非同步 不會主動更新頁面 所以
-            .then(function(response){
-                 //做法一 用reload重整頁面
-                // location.reload();
-                //做法二 成功將資料庫刪除資料後 將自己的HTML消除
-                let element = document.querySelector('#sup_img'+id);
-                element.parentNode.removeChild(element);
-            }) 
-             ;
-           
-        }
+            formData.append('_token', '{{ csrf_token() }}');
 
+            //將準備好的表單藉由fetch送到後台
+            fetch("/goods/delete_img/" + id, {
+                    method: "POST",
+                    body: formData
+                })
+
+                //fetch非同步 不會主動更新頁面 所以
+                .then(function(response) {
+                    //做法一 用reload重整頁面
+                    // location.reload();
+                    //做法二 成功將資料庫刪除資料後 將自己的HTML消除
+                    let element = document.querySelector('#sup_img' + id);
+                    element.parentNode.removeChild(element);
+                });
+
+        }
     </script>
 
 
@@ -211,7 +212,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
-    
 @endsection
 
 @endsection

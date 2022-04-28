@@ -33,9 +33,9 @@ class Controller extends BaseController
     }
 
 
-    public function login(){
-        return view('bootstrap.login');
-    }
+    // public function login(){
+    //     return view('bootstrap.login');
+    // }
 
     public function comment(){
         //以下用DB

@@ -87,41 +87,54 @@
             transform: translateY(-50%);
             left: 10%;
         }
-        .functionForm{
+
+        .functionForm {
             position: relative;
         }
-        .functionForm .functionBtn{
+
+        .functionForm .functionBtn {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
         }
+
         #shoppingcar {
             border: unset;
             background-color: unset;
             font-size: 24px;
         }
-        #commet{
+
+        #commet {
             border: unset;
             background-color: unset;
             font-size: 28px;
         }
-        #user{
+
+        #user {
             border: unset;
             background-color: unset;
             font-size: 28px;
         }
-        #banner_manage{
+
+        #banner_manage {
             border: unset;
             background-color: unset;
             /* font-size: 36px; */
         }
-        #goods_manage{
+
+        #goods_manage {
             border: unset;
             background-color: unset;
         }
-       #logo form{
-          height: 80px;
-       }
+
+        #commet_manage{
+            border: unset;
+            background-color: unset;
+        }
+        #logo form {
+            height: 80px;
+        }
+
     </style>
 </head>
 
@@ -139,34 +152,35 @@
                 <div id="func" class="col-8">
                     <div class="container">
                         <div class="row">
-                            <div class="col-2">Blog</div>
-                            <div class="col-2">Portfolio</div>
-                            <div class="col-2">
+                            <div class="col-1"></div>
+                            {{-- <div class="col-2">Blog</div>
+                            <div class="col-2">Portfolio</div> --}}
+                            <div class="col-3">
                                 <form action="/goods">
                                     <button id="goods_manage" type="submit">商品管理</button>
                                 </form>
                             </div>
-                            <div class="col-2">
+                            <div class="col-3">
                                 <form action="/banner">
                                     <button id="banner_manage" type="submit">Banner管理</button>
                                 </form>
                             </div>
-                            <div class="col-1 fs-3">
-                                <form class="functionForm" action="/shop01">
-                                    <button id="shoppingcar" class='fuctionBtn' type="submit">
-                                        <i class="fa-solid fa-cart-shopping"></i>
-                            </div>
-                            </button>
-                            </form>
 
-                            <div class="col-1 fs-3">
+                            <div class="col-3">
                                 <form class="functionForm" action="/comment">
-                                    <button id="commet" class='fuctionBtn' type="submit">
-                                        <i class="fa-solid fa-comment-dots"></i>
+                                    <button id="commet_manage" class='fuctionBtn' type="submit">
+                                        留言板管理
                                     </button>
                                 </form>
                             </div>
 
+                            <div class="col-1 fs-3">
+                                <form class="functionForm" action="/shop01">
+                                    <button id="shoppingcar" class='fuctionBtn' type="submit">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    </button>
+                                </form>
+                            </div>
                             <div class="col-1 fs-3">
                                 <form class="functionForm" action="/login">
                                     <button id="user" class='fuctionBtn' type="submit">
@@ -178,6 +192,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </nav>
     <main>

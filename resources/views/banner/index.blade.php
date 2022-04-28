@@ -1,8 +1,11 @@
-@extends('bootstrap.Template')
+{{-- @extends('bootstrap.Template') --}}
+@extends('layouts.app')
 @section('title')
     Banner管理頁面
 @endsection
 @section('link')
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     {{-- 以下link datatable CDN --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
@@ -123,16 +126,16 @@
     color:white;
     }
     td .btn.edit{
-        width:120px;
-        height:60px;
-        background-color:yellowgreen;
-        color:white;
+    width:120px;
+    height:60px;
+    background-color:yellowgreen;
+    color:white;
     }
     td .btn.del{
-        width:120px;
-        height:60px;
-        background-color:red;
-        color:white;
+    width:120px;
+    height:60px;
+    background-color:red;
+    color:white;
     }
 @endsection
 @section('main')
@@ -166,7 +169,8 @@
                                 <div class="banner_img">
                                     {{-- <img src="{{ asset('image/pizza-3007395__480.jpg') }}" alt=""> --}}
                                     {{-- 以下改成foreach形式 --}}
-                                    <img src="{{ $banner->img_path }}" alt="" style="opacity:{{ $banner->img_opacity }}">
+                                    <img src="{{ $banner->img_path }}" alt=""
+                                        style="opacity:{{ $banner->img_opacity }}">
                                 </div>
                             </td>
                             <td class="banner_priority">{{ $banner->weight }}</td>
@@ -174,13 +178,15 @@
                                 {{-- <a href="/banner/delete/{{ $comments->id }}">刪除</a> --}}
                                 {{-- <a href="/banner/edit/{{ $banner->id }}">編輯</a> --}}
                                 {{-- button onclick寫法 --}}
-                                <button class="btn edit" onclick="location.href='/banner/edit/{{$banner->id}}'">編輯</button>
-                                <button class="btn del" onclick="delete_banner({{$banner->id}})">刪除</button>
+                                <button class="btn edit"
+                                    onclick="location.href='/banner/edit/{{ $banner->id }}'">編輯</button>
+                                <button class="btn del" onclick="delete_banner({{ $banner->id }})">刪除</button>
                                 {{-- 或像以下直接把JS寫在裡面 --}}
                                 {{-- <button class="btn del" onclick="document.querySelector('#deleteForm{{$banner->id}}').submit();">刪除</button> --}}
-                                <form action="/banner/delete/{{$banner->id}}" method="post" hidden id="deleteForm{{$banner->id}}">
+                                <form action="/banner/delete/{{ $banner->id }}" method="post" hidden
+                                    id="deleteForm{{ $banner->id }}">
                                     @csrf
-                                    
+
                                 </form>
 
                             </td>
@@ -273,12 +279,11 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 
     <script>
-        function delete_banner($id){
+        function delete_banner($id) {
             //選到表單之後submit
-            document.querySelector('#deleteForm'+$id).submit();
+            document.querySelector('#deleteForm' + $id).submit();
         }
     </script>
-
-    @endsection
+@endsection
 
 @endsection

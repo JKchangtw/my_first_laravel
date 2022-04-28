@@ -203,8 +203,23 @@
                 {{-- 新增編輯和刪除鈕 --}}
                 <div>
                     {{-- 刪留言step1 --}}
-                    <a href="/comment/delete/{{$comments->id}}">刪除</a>
-                    <a href="/comment/edit/{{$comments->id}}">編輯</a>
+
+
+                     {{-- 認證方法一 --}}
+                {{-- @if(Auth::check())
+                有登入
+                @else
+                沒登入 --}}
+                {{-- 認證方法二 --}}
+
+                @auth
+                <a href="/comment/delete/{{$comments->id}}">刪除</a>
+                <a href="/comment/edit/{{$comments->id}}">編輯</a>
+                @endauth
+                @guest
+
+                @endguest
+
                 </div>
             </div>
             <div class="row"></div>
@@ -216,6 +231,7 @@
 
             <div class="row mt-5 mb-5">
                 <h1>歡迎底下留言討論</h1>
+
             </div>
             <form class="form" action="/comment/save" method="GET">
                 <div class="row">
@@ -242,6 +258,8 @@
                 <div class="row"></div>
                 <div class="row"></div>
                 <div class="row"></div>
+
+
 
                 <div class="row button">
                     <div class="col-3 d-flex justify-content-between">

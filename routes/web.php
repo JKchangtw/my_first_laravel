@@ -1,12 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\NewController;
 use App\Http\Controllers\BootstrapController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\GoodsController;
 
+
+use App\Http\Controllers\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,27 +33,34 @@ Route::get('/colortest', [Controller::class, 'colortest']);
 Route::get('/dice', [Controller::class, 'dice']);
 
 //用controller開bootstrap
+Route::get('/', [BootstrapController::class, 'bootstrap']);
 Route::get('/bootstrap', [BootstrapController::class, 'bootstrap']);
 Route::get('/shop01', [BootstrapController::class, 'shop01']);
 Route::get('/shop02', [BootstrapController::class, 'shop02']);
 Route::get('/shop03', [BootstrapController::class, 'shop03']);
 Route::get('/shop04', [BootstrapController::class, 'shop04']);
 
-Route::get('/login', [Controller::class, 'login']);
 
-Route::get('/comment', [Controller::class, 'comment']);
-Route::get('/comment/save', [Controller::class, 'save_comment']);
-// 刪留言step2
-Route::get('/comment/delete/{target}', [Controller::class, 'delete_comment']);
-Route::get('/comment/edit/{id}', [Controller::class, 'edit_comment']);
-Route::get('/comment/update/{id}', [Controller::class, 'update_comment']);
 
+
+Route::get('/login', [ AuthenticatedSessionController::class, 'create']);
+
+
+// ->middleware(['auth'])->name('dashboard')
+Route::prefix('/comment')->group(function(){
+    Route::get('/', [Controller::class, 'comment']);
+    Route::get('/save', [Controller::class, 'save_comment']);
+    // 刪留言step2
+    Route::get('/delete/{target}', [Controller::class, 'delete_comment']);
+    Route::get('/edit/{id}', [Controller::class, 'edit_comment']);
+    Route::get('/update/{id}', [Controller::class, 'update_comment']);
+});
 // controller寫法如上
 
 // 以下是一開始的寫法
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view("welcome");
+// });
 Route::get('say', function () {
     return 'welcome';
 });
@@ -84,7 +94,8 @@ Route::get('say', function () {
 
 
 //用group包起來 讓程式碼較精簡 好檢查
-Route::prefix('/banner')->group(function(){
+// 加上middleware
+Route::prefix('/banner')->middleware(['auth'])->name('dashboard')->group(function(){
     Route::get('/',[BannerController::class,'banner_index']);
     //CREATE:新增和儲存是一組
     Route::get('/create',[BannerController::class,'banner_create']);
@@ -96,8 +107,8 @@ Route::prefix('/banner')->group(function(){
     Route::post('/delete/{id}',[BannerController::class,'banner_delete']);
 });
 
-
-Route::prefix('/goods')->group(function(){
+//加上middleware以確認有登入才可以進去商品管理頁 可以再加上後來定義的Power來分辨權限等級
+Route::prefix('/goods')->middleware(['auth'])->name('dashboard')->group(function(){
     Route::get('/',[GoodsController::class,'goods_index']);
     //CREATE:新增和儲存是一組
     Route::get('/create',[GoodsController::class,'goods_create']);
@@ -112,3 +123,14 @@ Route::prefix('/goods')->group(function(){
     Route::delete('/delete_img/{img_id}',[GoodsController::class,'delete_img']);
 
 });
+
+// 原本的laravel welcome先註解掉
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth','Power'])->name('dashboard');
+
+require __DIR__.'/auth.php';
