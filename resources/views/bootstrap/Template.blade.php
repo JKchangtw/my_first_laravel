@@ -155,18 +155,18 @@
                             <div class="col-1"></div>
                             {{-- <div class="col-2">Blog</div>
                             <div class="col-2">Portfolio</div> --}}
-                            <div class="col-3">
+                            <div class="col-2">
                                 <form action="/goods">
                                     <button id="goods_manage" type="submit">商品管理</button>
                                 </form>
                             </div>
-                            <div class="col-3">
+                            <div class="col-2">
                                 <form action="/banner">
                                     <button id="banner_manage" type="submit">Banner管理</button>
                                 </form>
                             </div>
 
-                            <div class="col-3">
+                            <div class="col-2">
                                 <form class="functionForm" action="/comment">
                                     <button id="commet_manage" class='fuctionBtn' type="submit">
                                         留言板管理
@@ -174,10 +174,11 @@
                                 </form>
                             </div>
 
-                            <div class="col-1 fs-3">
+                            <div class="col-2">
                                 <form class="functionForm" action="/shop01">
-                                    <button id="shoppingcar" class='fuctionBtn' type="submit">
-                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    <button id="shoppingcar" class='fuctionBtn' type="submit" style="font-size: 18px">
+                                        {{-- <i class="fa-solid fa-cart-shopping"></i> --}}
+                                        購物車
                                     </button>
                                 </form>
                             </div>

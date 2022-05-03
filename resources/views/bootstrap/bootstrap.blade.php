@@ -671,10 +671,16 @@
                 <div id="func" class="col-8">
                     <div class="container">
                         <div class="row">
-                            <div class="col-3"></div>
+                            <div class="col-2"></div>
 
                             <div class="col-2">Blog</div>
-                            <div class="col-2">Portfolio</div>
+                            <div class="col-2">
+                                <form action="/shoppage">
+                                    <button id="user" type="submit" style="font-size:16px" class="h-100">
+                                        商品購物
+                                    </button>
+                                </form>
+                            </div>
                             {{-- <div class="col-2">
                                 <form action="/goods">
                                     <button id="goods_manage" type="submit">商品管理</button>
@@ -685,24 +691,25 @@
                                     <button id="banner_manage" type="submit">Banner管理</button>
                                 </form>
                             </div> --}}
-                            <div class="col-1 fs-3">
+                            <div class="col-1">
                                 <form action="/comment">
-                                    <button id="user" type="submit">
-                                        <i class="fa-solid fa-comment-dots"></i>
+                                    <button id="user" type="submit" style="font-size:16px">
+                                        {{-- <i class="fa-solid fa-comment-dots"></i> --}}
+                                        評論
                                     </button>
                                 </form>
                             </div>
-                            <div class="col-1">
+                            <div class="col-2">
                                 <form action="/shop01">
-                                    <button id="shoppingcar" type="submit">
-                                        <i class="fa-solid fa-cart-shopping"></i>
-
+                                    <button id="shoppingcar" type="submit" style="font-size:18px">
+                                        {{-- <i class="fa-solid fa-cart-shopping"></i> --}}
+                                        購物車
                                     </button>
                                 </form>
                             </div>
                             @auth
                             <div class="col-2">
-                                <a href="">{{Auth::user()->name}}，您好</a>
+                                <a href="/dashboard">{{Auth::user()->name}}，您好</a>
                             </div>
                             <div class="col-1">
                                 {{-- 用a標籤做 --}}
@@ -720,7 +727,8 @@
                             <div class="col-1 fs-3">
                                 <form action="/login">
                                     <button id="user" type="submit">
-                                        <i class="fa-solid fa-circle-user"></i>
+                                        登入
+                                        {{-- <i class="fa-solid fa-circle-user"></i> --}}
                                     </button>
                                 </form>
                             </div>
@@ -1286,6 +1294,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
+
     <script>
 
     </script>

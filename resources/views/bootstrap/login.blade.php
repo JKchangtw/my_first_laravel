@@ -165,6 +165,7 @@
                     </label>
                 </div>
                 <a href="{{ route('password.request') }}" class="mb-2 align-self-end">Forget your password</a>
+                <a href="/register" class="mb-2 align-self-end">註冊新帳號</a>
                 <button type='submit' class="">SIGN IN</button>
             </form>
             <div class="icons fs-3">

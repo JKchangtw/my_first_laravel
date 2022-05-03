@@ -3,17 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Storage;
 use App\Models\Goods;
 use App\Models\Product_img;
 use App\Http\Controller\FilesController;
-use Illuminate\Support\Facades\DB;
 
-
-class GoodsController extends Controller
+class ShopController extends Controller
 {
     //
-    public function goods_index(){
+    public function shop_index(){
         // 將所有Goods Model內的資料拿出來
         //然後輸出到列表頁上
             $goods = Goods::get();
@@ -21,16 +20,16 @@ class GoodsController extends Controller
             $slot='';
         // return view('goods.index');
 
-        return view('goods.index',compact('goods','header','slot'));
+        return view('shop.index',compact('goods','header','slot'));
     }
 
 
 
-    public function goods_create(){
+    public function shop_create(){
         //準備新增用的表單給使用者填寫
             $header='商品新增頁';
             $slot='';
-        return view('goods.create',compact('header','slot'));
+        return view('shop.create',compact('header','slot'));
     }
 
 
@@ -187,28 +186,4 @@ class GoodsController extends Controller
 
         return redirect('/goods/edit/'.$product_id);
     }
-
-    public function shop_page(){
-            $goods = Goods::get();
-            $header='商品列表頁';
-            $slot='';
-            $goodslist = DB::table('goods')->take(10)->orderby('id','desc')->get();
-
-
-        return view('shop.shoppage',compact('goods','goodslist', 'header','slot'));
-    }
-
-
-    public function goodinfo($id, Request $request){
-        //根據id找到想編輯的資料 將資料連同編輯用的畫面回傳給使用者
-        $goods = goods::find($id);
-        // $which = goods::where('id',$id)->first();
-        // 或find法
-        // $which = goods::find($id);
-
-            $header='商品編輯頁';
-            $slot='';
-        return view('shop.info',compact('goods','header','slot')) ;
-    }
-
 }

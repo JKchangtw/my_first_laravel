@@ -7,6 +7,11 @@ use App\Http\Controllers\NewController;
 use App\Http\Controllers\BootstrapController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\GoodsController;
+use App\Http\Controllers\AccountController;
+// use App\Http\Controllers\Hash;
+
+
+
 
 
 use App\Http\Controllers\AuthenticatedSessionController;
@@ -39,6 +44,8 @@ Route::get('/shop01', [BootstrapController::class, 'shop01']);
 Route::get('/shop02', [BootstrapController::class, 'shop02']);
 Route::get('/shop03', [BootstrapController::class, 'shop03']);
 Route::get('/shop04', [BootstrapController::class, 'shop04']);
+
+
 
 
 
@@ -107,6 +114,18 @@ Route::prefix('/banner')->middleware(['auth'])->name('dashboard')->group(functio
     Route::post('/delete/{id}',[BannerController::class,'banner_delete']);
 });
 
+Route::prefix('/account')->middleware(['auth'])->name('dashboard')->group(function(){
+    Route::get('/',[AccountController::class,'account_index']);
+    //CREATE:新增和儲存是一組
+    Route::get('/create',[AccountController::class,'account_create']);
+    Route::post('/store',[AccountController::class,'account_store']);
+    //UPDATE:編輯和更新是一組
+    Route::get('/edit/{id}',[AccountController::class,'account_edit']);
+    Route::post('/update/{id}',[AccountController::class,'account_update']);
+
+    Route::post('/delete/{id}',[AccountController::class,'account_delete']);
+});
+
 //加上middleware以確認有登入才可以進去商品管理頁 可以再加上後來定義的Power來分辨權限等級
 Route::prefix('/goods')->middleware(['auth'])->name('dashboard')->group(function(){
     Route::get('/',[GoodsController::class,'goods_index']);
@@ -124,13 +143,32 @@ Route::prefix('/goods')->middleware(['auth'])->name('dashboard')->group(function
 
 });
 
+Route::get('/shoppage',[GoodsController::class,'shop_page']);
+Route::get('/info/{id}',[GoodsController::class,'goodinfo']);
+
+
+
 // 原本的laravel welcome先註解掉
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth','Power'])->name('dashboard');
+})->middleware(['auth','power'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+
+
+
+// Route::prefix('/shop')->group(function(){
+//     Route::get('/',[Controller::class,'shop_index']);
+//     //CREATE:新增和儲存是一組
+//     Route::get('/create',[Controller::class,'shop_create']);
+//     Route::post('/store',[Controller::class,'shop_store']);
+//     //UPDATE:編輯和更新是一組
+//     Route::get('/edit/{id}',[Controller::class,'shop_edit']);
+//     Route::post('/update/{id}',[Controller::class,'shop_update']);
+
+//     Route::post('/delete/{id}',[Controller::class,'shop_delete']);
+// });

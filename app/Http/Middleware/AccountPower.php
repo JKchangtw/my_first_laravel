@@ -4,6 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use App\Http\Middleware\Authenticate;
+//引用
+use Auth;
 
 class AccountPower
 {
@@ -29,10 +32,17 @@ class AccountPower
         // //請求通過條件 前往下一個階段
         // return $next($request);
         // }
+        // if (Auth::user()->name =='jk1234590'){
+        //     return $next($request);
+        // }else{
+        //     return  redirect('/');
+        // }
 
-        if(Auth::user()->name == 'Manager'){
+            //改用身分組判斷
+            //1.管理者 2.一般客戶
+         if (Auth::user()->power == 1){ //繼續往前
             return $next($request);
-        }else{
+        }else{ //導到首頁
             return  redirect('/');
         }
     }

@@ -152,9 +152,10 @@
                 <div id="func" class="col-8">
                     <div class="container">
                         <div class="row">
-                            {{-- <div class="col-2">Blog</div> --}}
-                            {{-- <div class="col-2">Portfolio</div> --}}
-                            <div class="col-3">
+                            <div class="col-7"></div>
+                            <div class="col-1">Blog</div>
+                           <div class="col-1">Portfolio</div>
+                            {{-- <div class="col-3">
                                 <form action="/goods">
                                     <button id="goods_manage" type="submit">商品管理</button>
                                 </form>
@@ -163,12 +164,12 @@
                                 <form action="/banner">
                                     <button id="banner_manage" type="submit">Banner管理</button>
                                 </form>
-                            </div>
+                            </div> --}}
 
-                            <div class="col-3">
+                            <div class="col-1">
                                 <form class="functionForm" action="/comment">
                                     <button id="commet_manage" class='fuctionBtn' type="submit">
-                                        留言板管理
+                                        留言板
                                     </button>
                                 </form>
                             </div>

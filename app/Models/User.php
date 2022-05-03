@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'power',
     ];
 
     /**
@@ -41,4 +42,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //購物車用
+    //看成一筆使用者的資料
+    public function shopping_list(){ //對方的user_id 對應自己(user)的id
+        //一個使用者可以有很多想買的東西
+        return $this->hasMany(ShoppingCarts::class,'user_id','id');
+    }
+
+
 }

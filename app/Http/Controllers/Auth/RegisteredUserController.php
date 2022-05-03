@@ -39,10 +39,15 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        
+        //找到辦帳號的程式碼
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+
+            //加上新欄位 只要新註冊的都是一般客戶?
+            'power'=> 2,
         ]);
 
         event(new Registered($user));

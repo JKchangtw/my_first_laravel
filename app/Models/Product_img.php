@@ -27,11 +27,12 @@ class Product_img extends Model
      */
     protected $fillable = ['img_path', 'product_id', 'created_at', 'updated_at'];
 
+    //主詞：每一張商品圖片
     public function product(){
         //一對多 關連到另外一個class        ,被關聯的資料,自己的資料
         // $this->hasOne(Goods::class,'id','product_id');
 
-        //或以下較正統寫法
+        //或以下較正統寫法 因為必定屬於某個商品
         //belongsTo /belongsToMany格式 ,自己的資料,被關聯的資料
         $this->belongsTo(Goods::class,'product_id','id');
 
