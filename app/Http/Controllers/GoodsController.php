@@ -9,6 +9,9 @@ use App\Models\Product_img;
 use App\Http\Controller\FilesController;
 use Illuminate\Support\Facades\DB;
 
+use App\Models\ShoppingCart;
+use Illuminate\Support\Facades\Auth;
+
 
 class GoodsController extends Controller
 {
@@ -197,7 +200,16 @@ class GoodsController extends Controller
 
         return view('shop.shoppage',compact('goods','goodslist', 'header','slot'));
     }
+    public function shop01(){
+        
+        // $shoplist =  ShoppingCart::find($id);
+        // dd($shoplist);
 
+        // $item = Goods::where('id' , $shoplist->product_id)->all();
+        // dd($item);
+
+        // return view('bootstrap.shop01',compact($shoplist));
+    }
 
     public function goodinfo($id, Request $request){
         //根據id找到想編輯的資料 將資料連同編輯用的畫面回傳給使用者
@@ -211,4 +223,46 @@ class GoodsController extends Controller
         return view('shop.info',compact('goods','header','slot')) ;
     }
 
+    //for購物車
+    public function add_cart(Request $request){
+
+        $product = Goods::find($request->product_id);
+
+        // dd($product);
+
+        if($request->add_qty > $product->goods_count){
+            $result = [
+                'result' =>'error',
+                'message'=>'欲購買數量超過庫存，請聯絡客服人員',
+            ];
+            return $result;
+        }elseif($request->add_qty < 1){
+            $result=[
+                'result' => 'error',
+                'message' =>'購買數量異常，請重新確認',
+            ];
+            return $result;
+        }
+        //如果沒登入
+        if(!Auth::check()){
+            $result=[
+                'result' => 'error',
+                'message' =>'尚未登入,請先登入',
+            ];
+            return $result;
+        }
+
+            ShoppingCart::create([
+                'product_id'=>$request->product_id,
+                'user_id' => Auth::user()->id,
+                'qty' => $request->add_qty,
+            ]);
+
+            $result=[
+                'result'=>'success',
+                // 'message'=>'新增成功'
+            ];
+            return $result;
+
+    }
 }

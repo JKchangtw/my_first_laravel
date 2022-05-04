@@ -27,12 +27,12 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="'/banner'" :active="request()->routeIs('banner*')">
+                    <x-nav-link :href="'/banner'" :active="request()->Is('banner*')">
                         Banner管理
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="'/account'" :active="request()->routeIs('account*')">
+                    <x-nav-link :href="'/account'" :active="request()->Is('account*')">
                         會員管理
                     </x-nav-link>
                 </div>

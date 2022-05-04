@@ -1,4 +1,4 @@
-@extends('bootstrap.Template')
+@extends('bootstrap.TemplateUser')
 @section('title')
     留言板
 @endsection

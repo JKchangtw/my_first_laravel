@@ -43,7 +43,7 @@ class AccountController extends Controller
         //     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         //     'password' => ['required', 'confirmed', Rules\Password::defaults()],
         // ]);
-        dd($request);
+        // dd($request);
         //先用傳統方法呼叫一個驗證器去幫忙驗證帳號
          $validator = Validator::make($request->all(),[
             'name' => ['required', 'string', 'max:255'],

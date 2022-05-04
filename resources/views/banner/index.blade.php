@@ -144,7 +144,7 @@
 
             <div class="row  d-flex justify-content-between">
                 <div class="col-10">
-                    <h1>Banner管理</h1>
+                    {{-- <h1>Banner管理</h1> --}}
                 </div>
             </div>
             <div class="row mb-1">

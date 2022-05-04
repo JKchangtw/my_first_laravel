@@ -43,18 +43,21 @@
         #icon {
             height: 80px;
             background-color: aqua;
-        }
+        };
 
 
 
-        @yield('css') .footer .footerLogo {
+
+
+
+        .footer .footerLogo {
             background-image: url("{{ asset('digipack_IMG/logo2.jpg') }}");
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
             width: 100px;
             height: 100px;
-        }
+        };
 
         .footer .footerLeft {
             width: 30%;
@@ -135,9 +138,9 @@
             height: 80px;
         }
 
+        @yield('css');
     </style>
 </head>
-
 <body>
     <nav>
         <div class="container-fluid">
@@ -152,7 +155,7 @@
                 <div id="func" class="col-8">
                     <div class="container">
                         <div class="row">
-                            <div class="col-7"></div>
+                            <div class="col-6"></div>
                             <div class="col-1">Blog</div>
                            <div class="col-1">Portfolio</div>
                             {{-- <div class="col-3">
@@ -166,9 +169,9 @@
                                 </form>
                             </div> --}}
 
-                            <div class="col-1">
+                            <div class="col-2">
                                 <form class="functionForm" action="/comment">
-                                    <button id="commet_manage" class='fuctionBtn' type="submit">
+                                    <button id="commet_manage" class='fuctionBtn w-100' type="submit">
                                         留言板
                                     </button>
                                 </form>
@@ -203,9 +206,9 @@
                     <div class="footerLeft d-flex flex-wrap">
                         <div class="footerLogo"></div>
                         <div class="footerTitle d-flex align-items-center fs-4">數位方塊</div>
-                        <div class="footerIntro">Air plant banjo lyft occupy retro adaptogen indego</div>
+                        <div class="footerIntro" style="align-self:center">Air plant banjo lyft occupy retro adaptogen indego</div>
                     </div>
-                    <div class="footerRight d-flex justify-content-around">
+                    <div class="footerRight w-100 d-flex justify-content-around">
 
                         <div class="cata">
                             <div class="mb-1">CATEGORIES</div>
@@ -267,6 +270,8 @@
             img.onerror = null;
         }
     </script> --}}
+
+
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
     <script>
         var swiper = new Swiper(".mySwiper", {
@@ -286,7 +291,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
-    @yield('script')
+
+
+@yield('script')
+
 </body>
 
 </html>

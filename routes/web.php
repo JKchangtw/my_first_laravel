@@ -40,7 +40,9 @@ Route::get('/dice', [Controller::class, 'dice']);
 //用controller開bootstrap
 Route::get('/', [BootstrapController::class, 'bootstrap']);
 Route::get('/bootstrap', [BootstrapController::class, 'bootstrap']);
-Route::get('/shop01', [BootstrapController::class, 'shop01']);
+
+
+Route::get('/shop01', [GoodsController::class, 'shop01']);
 Route::get('/shop02', [BootstrapController::class, 'shop02']);
 Route::get('/shop03', [BootstrapController::class, 'shop03']);
 Route::get('/shop04', [BootstrapController::class, 'shop04']);
@@ -146,6 +148,8 @@ Route::prefix('/goods')->middleware(['auth'])->name('dashboard')->group(function
 Route::get('/shoppage',[GoodsController::class,'shop_page']);
 Route::get('/info/{id}',[GoodsController::class,'goodinfo']);
 
+//購物車用
+Route::post('/add_to_cart',[GoodsController::class,'add_cart']);
 
 
 // 原本的laravel welcome先註解掉
@@ -172,3 +176,7 @@ require __DIR__.'/auth.php';
 
 //     Route::post('/delete/{id}',[Controller::class,'shop_delete']);
 // });
+
+
+
+

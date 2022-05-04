@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="https//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    {{-- <link rel="stylesheet" href="https//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"> --}}
+    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css"> --}}
 @endsection
 @section('css')
     #shopping-step01{
@@ -119,10 +119,11 @@
     body {
     position: relative;
     height: 100%;
+
     }
 
     body {
-    background: #eee;
+    {{-- background: #eee; --}}
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
     font-size: 14px;
     color: #000;
@@ -163,7 +164,7 @@
     }
 
     body {
-    background: #000;
+    {{-- background: #000; --}}
     color: #000;
     }
 
@@ -212,14 +213,14 @@
         <div class="container-fluid form">
 
             <div class="row">
-                <h1 style="color:blue;font-weight:bold">商品資訊</h1>
+                <h1 style="color:blue;font-weight:bold; font-family:monospace">商品資訊</h1>
             </div>
             <div class="row line mb-2"></div>
-            {{-- enctype是為了讓我們可以傳圖片 --}}
-            <form class="d-flex flex-column" action="/goods/update/{{ $goods->id }}" method="post"
-                enctype="multipart/form-data">
+
+
+            <form class="d-flex flex-column">
                 @csrf
-                <h2>{{ $goods->goods_name }}</h2>
+                <h2 style="background: white; color:black; font-family:fantasy">{{ $goods->goods_name }}</h2>
 
                 <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
                     <div class="swiper-wrapper">
@@ -247,62 +248,97 @@
                         @endforeach
                     </div>
                 </div>
-
-
-                {{-- <img src="{{ $goods->goods_img }}" alt=""> --}}
-                {{-- <label for="goods_img">商品主圖片更新</label> --}}
-                {{-- <input type="file" name="goods_img" id="goods_img"> --}}
-                {{-- <h3>其他圖片>>></h3> --}}
-                <div class='d-flex flex-wrap align-items-start'>
-                    {{-- 直接呼叫要關聯的那個函式 --}}
+                {{-- <div class='d-flex flex-wrap align-items-start'>
+                    直接呼叫要關聯的那個函式
                     @foreach ($goods->imgs as $item)
-                        {{-- <div class="d-flex flex-column me-3 " style="width:150px" id="sup_img{{ $item->id }}">
-                            <img src="{{ $item->img_path }}" alt="" class="w-100"> --}}
-                        {{-- *用form表單做刪單張次要圖片 不是最好的作法 so先註解 --}}
-                        {{-- *<button class="btn btn-danger w-100" type='button' onclick="document.querySelector('#deleteForm{{$item->id}}').submit();">刪除圖片</button> --}}
-                        {{-- <button class="btn btn-danger w-100" type='button'
-                                onclick="delete_img({{ $item->id }});">刪除圖片</button> --}}
-                        {{-- </div> --}}
                     @endforeach
-                </div>
-                {{-- <label for="goods_img">商品次圖片上傳</label> --}}
-                {{-- <input type="file" name="second_img[]" id="goods_img2" multiple accept="image/*" p> --}}
+                </div> --}}
+                <div class="row">
+                    <div class="col-8">
+                        <h5 style="font-family:monospace">商品介紹：{{ $goods->goods_intro }}</h5>
+                    </div>
+                    <div clsss="col-4">
+                        <h5 style="font-family:monospace">商品售價：{{ $goods->goods_price }} NTD</h5>
 
+                        <h6 style="font-family:monospace">商品剩餘數量：{{ $goods->goods_count }}</h6>
+                        <div>
+                            {{-- <i class="fa-solid fa-minus" id="minus"></i> --}}
+                            <span id="minus" style="font-size:18px; font-weight:bold">-</span>
+                            <input type="number" id="qty" name='qty' value="1">
+                            {{-- <i class="fa-solid fa-plus" id="plus"></i> --}}
+                            <span id="plus" style="font-size:18px; font-weight:bold">+</span>
+                        </div>
 
-                {{-- <label for="">商品名稱>>></label> --}}
-                {{-- <input type="text" name="goods_name" id="goods_name" value="{{ $goods->goods_name }}"> --}}
-                {{-- <h3>商品名稱：{{ $goods->goods_name }}</h3> --}}
-
-                {{-- <label for="">商品售價>>></label> --}}
-                {{-- <input type="number" name="goods_price" id="goods_price" value="{{ $goods->goods_price }}"> --}}
-                <h5>商品介紹：{{ $goods->goods_intro }}</h5>
-
-
-                {{-- <label for="">商品數量>>></label> --}}
-                {{-- <input type="number" name="goods_count" id="goods_count" value="{{ $goods->goods_count }}"> --}}
-                <h5>商品售價：{{ $goods->goods_price }}NTD</h5>
-
-                {{-- <label for="">商品介紹>>></label> --}}
-                {{-- <input type="text" name="goods_intro" id="goods_intro" value="{{ $goods->goods_intro }}"> --}}
-                <h6>商品數量：{{ $goods->goods_count }}</h6>
-
-                <div class="button-box d-flex justifu-content-center">
-                    <button onclick="history.back()" type="reset" class="btn btn-danger">返回上頁</button>
-                    <button class="create btn btn-primary">加入購物車</button>
+                        <div class="button-box d-flex justifu-content-between">
+                            <button onclick="history.back()" type="reset" class="btn btn-danger">返回上頁</button>
+                            <input type="number" id="product_id" value="{{ $goods->id }}" hidden>
+                            <button class="create btn btn-primary" type="button" id="add_product">加入購物車</button>
+                            {{-- <a role="button" id="add_product">加入購物車</a> --}}
+                        </div>
+                    </div>
                 </div>
             </form>
-            {{-- *用form表單做法 先註解 --}}
-            {{-- @foreach ($goods->imgs as $item)
-            <form action="/goods/delete_img/{{$item->id}}" method="post" hidden id="deleteForm{{$item->id}}">
-                @csrf
-                @method('DELETE')
-             </form>
-            @endforeach --}}
+
         </div>
 
     </section>
 @endsection
 @section('script')
+    <script>
+        const minus = document.querySelector('#minus');
+        const qty = document.querySelector('#qty');
+        const plus = document.querySelector('#plus');
+        const add_product = document.querySelector("#add_product");
+        //console以確認有綁定成功
+        // console.log(add_product);
+
+        minus.onclick = function() {
+            //用parseInt將字串轉換成數字
+            if (parseInt(qty.value) > 1) {
+                qty.value = parseInt(qty.value) - 1;
+            }
+        }
+        plus.onclick = function() {
+            if (parseInt(qty.value) < {!! $goods->goods_count !!}) {
+                qty.value = parseInt(qty.value) + 1;
+            }
+        }
+
+        add_product.onclick = function() {
+            // var add_qty = parseInt(qty.value);
+            //在JS建立一個虛擬的form表單
+            var formData = new FormData();
+            formData.append('add_qty', parseInt(qty.value));
+            //把 id 抓進 formData中?
+            formData.append('product_id', {!! $goods->id !!});
+            //
+            formData.append('_token', '{!! csrf_token() !!}');
+
+            //用fetch送 後面寫網址接路由(想訪問的url) & 方法 & body就是建好的虛擬表單 送出formData
+            fetch("/add_to_cart", {
+                    method: 'POST',
+                    body: formData,
+                })
+                .then(response => response.json())
+                //失敗結果處理
+                .catch(error => {
+                    // console.log('');
+                    alert('新增失敗，請再嘗試一次')
+                    return 'error';
+                })
+                //成功結果處理
+                .then(response => {
+                    if (response != 'error') {
+                        if (response.result == 'success')
+                            alert('商品已加入購物車')
+                        else {
+                            alert('新增失敗:' + response.message)
+                        }
+                    }
+                })
+        }
+    </script>
+
     <script>
         function delete_img(id) {
             // console.log('')
@@ -355,8 +391,8 @@
     </script>
 
 
-    <script src="jquery-3.6.0.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    {{-- <script src="jquery-3.6.0.min.js"></script> --}}
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
 
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    {{-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script> --}}
 @endsection

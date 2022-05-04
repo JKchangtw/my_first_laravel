@@ -133,7 +133,7 @@
 
             <div class="row  d-flex justify-content-between">
                 <div class="col-10">
-                    <h1>帳號管理</h1>
+                    {{-- <h1>帳號管理</h1> --}}
                 </div>
             </div>
             <div class="row mb-1">
@@ -159,12 +159,12 @@
                                 <div class="banner_img">
                                     {{-- <img src="{{ asset('image/pizza-3007395__480.jpg') }}" alt=""> --}}
                                     {{-- 以下改成foreach形式 --}}
-                                    {{$user->name}}
+                                    {{ $user->name }}
                                 </div>
                             </td>
                             <td class="banner_priority">{{ $user->email }}</td>
                             <td class="banner_priority">
-                                @if ( $user->power==1)
+                                @if ($user->power == 1)
                                     管理員
                                 @else
                                     一般使用者
@@ -281,11 +281,11 @@
             document.querySelector('#deleteForm' + $id).submit();
         }
     </script>
-    <script>
-        if(session('success')){
-            alert("session('success')")
-        }
-    </script>
+    @if (session('success'))
+        <script>
+            alert(" {{session('success')}} ")
+        </script>
+    @endif
 @endsection
 
 @endsection

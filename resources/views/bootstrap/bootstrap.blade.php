@@ -198,7 +198,7 @@
         #gallery .col-6 {
             height: 700px;
             background-color: whitesmoke;
-            padding-top:25px;
+            padding-top: 25px;
         }
 
         #gallery img {
@@ -708,30 +708,30 @@
                                 </form>
                             </div>
                             @auth
-                            <div class="col-2">
-                                <a href="/dashboard">{{Auth::user()->name}}，您好</a>
-                            </div>
-                            <div class="col-1">
-                                {{-- 用a標籤做 --}}
-                                {{-- <a href="">{{}}</a> --}}
-                                {{-- 用button做 --}}
-                                <form action="{{route('logout')}}" method="POST" >
-                                    @csrf
-                                    <button id="user" type="submit" style="font-size: 16px">
-                                       登出
-                                    </button>
-                                </form>
-                            </div>
+                                <div class="col-2">
+                                    <a href="/dashboard">{{ Auth::user()->name }}，您好</a>
+                                </div>
+                                <div class="col-1">
+                                    {{-- 用a標籤做 --}}
+                                    {{-- <a href="">{{}}</a> --}}
+                                    {{-- 用button做 --}}
+                                    <form action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <button id="user" type="submit" style="font-size: 16px">
+                                            登出
+                                        </button>
+                                    </form>
+                                </div>
                             @endauth
                             @guest
-                            <div class="col-1 fs-3">
-                                <form action="/login">
-                                    <button id="user" type="submit">
-                                        登入
-                                        {{-- <i class="fa-solid fa-circle-user"></i> --}}
-                                    </button>
-                                </form>
-                            </div>
+                                <div class="col-1 fs-3">
+                                    <form action="/login">
+                                        <button id="user" type="submit">
+                                            登入
+                                            {{-- <i class="fa-solid fa-circle-user"></i> --}}
+                                        </button>
+                                    </form>
+                                </div>
                             @endguest
                         </div>
                     </div>
@@ -1136,15 +1136,17 @@
             <div class="container-fluid">
                 <div class="row d-flex flex-row justify-content-around">
                     @foreach ($goodslist as $goods)
-                        <div class="col-3 card">
-                            <img src="{{ $goods->goods_img }}" class="card-img-btm1" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">CATEGORY</h5>
-                                <p class="card-text">{{ $goods->goods_name }}</p>
-                                <p class="card-text"><small
-                                        class="text-muted">{{ $goods->goods_price }}</small></p>
+                        <button class="col-3 btn" onclick="location.href='/info/{{ $goods->id }}'">
+                            <div class="card">
+                                <img src="{{ $goods->goods_img }}" class="card-img-btm1" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">CATEGORY</h5>
+                                    <p class="card-text">{{ $goods->goods_name }}</p>
+                                    <p class="card-text"><small
+                                            class="text-muted">${{ $goods->goods_price }} NTD</small></p>
+                                </div>
                             </div>
-                        </div>
+                        </button>
                     @endforeach
                 </div>
                 {{-- <div class="row d-flex flex-row justify-content-around">
