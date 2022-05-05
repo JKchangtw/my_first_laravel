@@ -15,6 +15,7 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
+            //沒登入要登入 加上提示訊息->with('message','請先登入')
             return route('login');
         }
     }

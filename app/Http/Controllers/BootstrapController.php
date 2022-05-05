@@ -32,10 +32,21 @@ class BootstrapController extends Controller
     public function shop01(){
         return view('bootstrap.shop01');
     }
-    public function shop02(){
-        return view('bootstrap.shop02');
+    public function shop02(Request $request){
+
+
+
+        session([
+            'amount' => $request->qty,'','']);
+            
+
+
+        return view('shop.shop02');
     }
-    public function shop03(){
+    public function shop03(Request $request){
+        //先檢查資料有沒有送進來
+        dd($request->all());
+
         return view('bootstrap.shop03');
     }
     public function shop04(){

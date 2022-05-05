@@ -201,14 +201,35 @@ class GoodsController extends Controller
         return view('shop.shoppage',compact('goods','goodslist', 'header','slot'));
     }
     public function shop01(){
-        
-        // $shoplist =  ShoppingCart::find($id);
-        // dd($shoplist);
+        //先抓登入的使用者 路由先設定middleware(必須先登入才能瀏覽)
+        // $user = Auth::user()->id;
+        //或Auth內建方法
+        $user = Auth::id();
+        //user_id是否=上面抓出來的 get全部的
+        $shopping =  ShoppingCart::where('user_id','=',$user)->get();
+        //$shopping抓出來是陣列 ->model裡面的function 再->關聯的東西
+        //dump但不die
+        // dump($shopping[0]->product->goods_name);
+        // dump($shopping[1]->product->goods_name);
+        // dump($shopping[2]->product->goods_name);
+        // dump($shopping[3]->product->goods_name);
+        //用FOR迴圈
+        // for($i=o; $i <count($shopping); $i++){
+        //     $item = $shopping[$i]->product;
+        //     dump($item->goods_name);
+        //     dump($item->goods_count);
+        //     dump($item->goods_price);
+        // };
+        //用foreach 比較精簡的for迴圈
+        // foreach($shopping as $i=>$item){
+        //     dump($item->product->goods_name);
+        //     // dump($item->product->product_id);
+        //     dump($item->product->goods_price);
+        //     dump($item->product->goods_img);
+        // }
+        // dd();
 
-        // $item = Goods::where('id' , $shoplist->product_id)->all();
-        // dd($item);
-
-        // return view('bootstrap.shop01',compact($shoplist));
+        return view('shop.shop01',compact('shopping'));
     }
 
     public function goodinfo($id, Request $request){

@@ -8,7 +8,7 @@ use App\Http\Controllers\BootstrapController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\GoodsController;
 use App\Http\Controllers\AccountController;
-// use App\Http\Controllers\Hash;
+// use App\Http\Controllers\OrderController;
 
 
 
@@ -42,10 +42,14 @@ Route::get('/', [BootstrapController::class, 'bootstrap']);
 Route::get('/bootstrap', [BootstrapController::class, 'bootstrap']);
 
 
-Route::get('/shop01', [GoodsController::class, 'shop01']);
-Route::get('/shop02', [BootstrapController::class, 'shop02']);
-Route::get('/shop03', [BootstrapController::class, 'shop03']);
-Route::get('/shop04', [BootstrapController::class, 'shop04']);
+//用middleware擋 有登入才能看
+Route::middleware('auth')->group(function(){
+    Route::get('/shop01', [GoodsController::class, 'shop01']);
+    Route::POST('/shop02', [BootstrapController::class, 'shop02']);
+    Route::POST('/shop03', [BootstrapController::class, 'shop03']);
+    Route::POST('/shop04', [BootstrapController::class, 'shop04']);
+});
+
 
 
 
@@ -150,6 +154,15 @@ Route::get('/info/{id}',[GoodsController::class,'goodinfo']);
 
 //購物車用
 Route::post('/add_to_cart',[GoodsController::class,'add_cart']);
+
+Route::prefix('/order')->middleware(['auth','power'])->name('dashboard')->group(function(){
+    Route::get('/',[Controller::class,'order']);
+    Route::get('/edit/{id}',[Controller::class,'order_edit']);
+    Route::post('/update/{id}',[Controller::class,'order_update']);
+
+});
+
+
 
 
 // 原本的laravel welcome先註解掉

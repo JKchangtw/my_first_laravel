@@ -12,6 +12,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\DB;
 // 以下引入model
 use App\Models\Comment;
+use App\Models\Order;
 
 
 class Controller extends BaseController
@@ -134,4 +135,38 @@ class Controller extends BaseController
         // 印出送出的全部input
         // dd($request->all());
     }
+
+
+
+    public function order(){
+
+        $orders = Order::orderby('id','desc')->get();
+        $header='訂單管理頁';
+        $slot='';
+
+
+        return view('order.index',compact('orders','header','slot'));
+    }
+    public function order_edit($id){
+
+
+        $editorder = Order::where('id',$id)->first();
+        $header='訂單編輯頁';
+        $slot='';
+
+        return view('order.edit',compact('editorder','header','slot'));
+    }
+
+    public function order_update($id, Request $request){
+
+            Order::where('id',$id)
+            ->update([
+            'status'=>$request->status,
+             ]);
+
+            return redirect('/order');
+        }
+
 }
+
+
