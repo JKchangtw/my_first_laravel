@@ -87,7 +87,7 @@
     margin:0 auto;
     }
     .img1{
-        position:relative;
+    position:relative;
     }
     .img1 img{
     width: 50px;
@@ -135,7 +135,7 @@
     font-size: 14px;
     }
     .count{
-        position:relative;
+    position:relative;
     }
     #qty{
     width:60px;
@@ -146,10 +146,10 @@
 
     }
     .totalbox span{
-        font-size:20px;
+    font-size:20px;
     }
     .row.total{
-        height:150px;
+    height:150px;
     }
 @endsection
 @section('main')
@@ -172,7 +172,7 @@
         </div>
     </section>
     <section class="list mt-1">
-        <form href="/shop02"  method="post" class="container d-flex flex-column" style="background-color: whitesmoke">
+        <form action="/shop02" method="post" class="container d-flex flex-column" style="background-color: whitesmoke">
             @csrf
             <div class="row line"></div>
             <div class="row">
@@ -185,7 +185,7 @@
                         <div class="img1">
                             <img src="{{ $item->product->goods_img }}" alt="">
                         </div>
-                        <div class="buywhat ms-5" >
+                        <div class="buywhat ms-5">
                             <h3 style="line-height: 100px">{{ $item->product->goods_name }}</h3>
                             {{-- <h6>#41551</h6> --}}
                         </div>
@@ -193,41 +193,42 @@
                     <div class="col-4 d-flex justify-content-between">
                         <div class="count d-flex">
                             <span class="me-3" id="minus" style="font-size:18px; font-weight:bold;">-</span>
-                            <input class="me-3" type="number" id="qty" name='qty' value="{{ $item->qty }}">
+                            {{-- 表單吃name 加上[]就變陣列 才會有很多個商品 的數量 --}}
+                            <input class="me-3" type="number" id="qty" name='qty[]' value="{{ $item->qty }}">
                             <span id="plus" style="font-size:18px; font-weight:bold;">+</span>
                         </div>
-                        <div class="price" style="font-family: monospace; font-size:18px; line-height: 100px">${{ $item->product->goods_price *$item->qty}}</div>
+                        <div class="price" style="font-family: monospace; font-size:18px; line-height: 100px">
+                            ${{ $item->product->goods_price * $item->qty }}</div>
                     </div>
                 </div>
                 <div class="row line"></div>
-
             @endforeach
 
             <div class="row total d-flex flex-column">
                 <div class="totalbox">
                     <div>
                         <span class="left">數量：</span>
-                        <span class="right">{{count($shopping)}}</span>
+                        <span class="right">{{ count($shopping) }}</span>
                     </div>
                     <div>
                         {{-- 寫一個php來算小計 --}}
                         {{-- 理想狀況在controller就要算好在帶進來 --}}
                         <?php
                         $subtotal = 0;
-                        foreach($shopping as $value){
-                            $subtotal+= $value->qty* $value->product->goods_price;
-                        };
+                        foreach ($shopping as $value) {
+                            $subtotal += $value->qty * $value->product->goods_price;
+                        }
                         ?>
                         <span class="left">小計：</span>
-                        <span class="right">${{$subtotal}}</span>
+                        <span class="right">${{ $subtotal }}</span>
                     </div>
                     <div>
                         <span class="left">運費：</span>
-                        <span class="right">$100</span>
+                        <span class="right">待計算</span>
                     </div>
                     <div>
                         <span class="left">總計：</span>
-                        <span class="right">${{$subtotal+100}}</span>
+                        <span class="right">${{ $subtotal}}</span>
                     </div>
                 </div>
             </div>
@@ -237,9 +238,7 @@
                     <i class="fa-solid fa-arrow-left"></i>
                     <a class="back" href="/bootstrap">返回購物</a>
                 </div>
-                <button class="next" type="submit">
-
-                        下一步</button>
+                <button class="next" type="submit">下一步</button>
             </div>
         </form>
     </section>
@@ -255,6 +254,5 @@
                 qty.value = parseInt(qty.value) - 1;
             }
         }
-
     </script>
 @endsection

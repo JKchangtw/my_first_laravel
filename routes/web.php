@@ -45,9 +45,12 @@ Route::get('/bootstrap', [BootstrapController::class, 'bootstrap']);
 //用middleware擋 有登入才能看
 Route::middleware('auth')->group(function(){
     Route::get('/shop01', [GoodsController::class, 'shop01']);
-    Route::POST('/shop02', [BootstrapController::class, 'shop02']);
-    Route::POST('/shop03', [BootstrapController::class, 'shop03']);
-    Route::POST('/shop04', [BootstrapController::class, 'shop04']);
+    //改成POST後 有基本的防禦功能 藉由表單才能進來 打網址沒辦法直接看到頁面
+    Route::post('/shop02', [GoodsController::class, 'shop02']);
+    Route::post('/shop03', [GoodsController::class, 'shop03']);
+    Route::post('/shop04', [GoodsController::class, 'shop04']);
+
+    Route::get('/show_order/{id}', [GoodsController::class, 'show_order']);//展示訂單
 });
 
 
@@ -162,7 +165,8 @@ Route::prefix('/order')->middleware(['auth','power'])->name('dashboard')->group(
 
 });
 
-
+//檢視訂單列表
+Route::post('order_list',[Controller::class,'order_list']);
 
 
 // 原本的laravel welcome先註解掉

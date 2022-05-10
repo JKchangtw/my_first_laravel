@@ -123,31 +123,37 @@
             </div>
             <div class="row line mb-2"></div>
             {{-- enctype是為了讓我們可以傳圖片 --}}
-            <form class="d-flex flex-column" action="/order/update/{{ $editorder->id }}" method="post"
-                enctype="multipart/form-data">
+            <form class="d-flex flex-column" action="/order/update/{{ $editorder->id }}" method="post">
                 @csrf
 
-
-
-
-
-                <label for="">訂單編號</label>
+                <div>訂單編號：{{$editorder->id}}</div>
+                <div>訂單金額：{{$editorder->total}}</div>
+                <div>購買者姓名：{{$editorder->name}}</div>
+                <div>購買者信箱：{{$editorder->email}}</div>
+                {{-- <label for="">訂單編號</label>
                 <input type="text" name="goods_name" id="goods_name" value="{{ $editorder->id}}">
 
                 <label for="">訂單金額</label>
                 <input type="number" name="goods_price" id="goods_price" value="{{ $editorder->total }}">
 
                 <label for="">訂單人</label>
-                <input type="text" name="goods_count" id="goods_count" value="{{ $editorder->name }}">
+                <input type="text" name="goods_count" id="goods_count" value="{{ $editorder->name }}"> --}}
 
                 <label for="">訂單狀態更新</label>
-                <input type="text" name="goods_intro" id="goods_intro" value="{{ $editorder->status }}">
+                <select name="status" id="status">
+                    <option value="1" @if($editorder->status==1)selected @endif>訂單成立，尚未付款</option>
+                    <option value="2" @if($editorder->status==2)selected @endif>已付款</option>
+                    <option value="3" @if($editorder->status==3)selected @endif>已出貨</option>
+                    <option value="4" @if($editorder->status==4)selected @endif>已結單</option>
+                    <option value="5" @if($editorder->status==5)selected @endif>已取消</option>
+                </select>
+                {{-- <input type="text" name="goods_intro" id="goods_intro" value="{{ $editorder->status }}"> --}}
                 <label for="">訂單備註</label>
                 <input type="text" name="goods_intro" id="goods_intro" value="{{ $editorder->ps }}">
 
                 <div class="button-box d-flex justifu-content-center">
-                    <button class="btn btn-danger">取消編輯</button>
-                    <button class="create btn btn-primary">確定更新</button>
+                    <button class="btn btn-danger" type="button">取消修改</button>
+                    <button class="create btn btn-primary" type="submit">確定更新</button>
                 </div>
             </form>
             {{-- *用form表單做法 先註解 --}}

@@ -653,7 +653,9 @@
         #logo form {
             height: 80px;
         }
-
+        #func form {
+            height: 80px;
+        }
     </style>
 </head>
 
@@ -669,15 +671,20 @@
                     </form>
                 </div>
                 <div id="func" class="col-8">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-2"></div>
-
-                            <div class="col-2">Blog</div>
+                    <div class="container" style="height:80px">
+                        <div class="row" style="height:80px">
                             <div class="col-2">
                                 <form action="/shoppage">
-                                    <button id="user" type="submit" style="font-size:16px" class="h-100">
+                                    <button id="user" type="submit" style="font-size:16px" style="height:80px" >
                                         商品購物
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="col-2">
+                                <form action="/order_list" method="post">
+                                    @csrf
+                                    <button id="user" type="submit" style="font-size:16px" style="height:80px" >
+                                        訂單查看
                                     </button>
                                 </form>
                             </div>
@@ -691,17 +698,17 @@
                                     <button id="banner_manage" type="submit">Banner管理</button>
                                 </form>
                             </div> --}}
-                            <div class="col-1">
+                            <div class="col-2">
                                 <form action="/comment">
                                     <button id="user" type="submit" style="font-size:16px">
                                         {{-- <i class="fa-solid fa-comment-dots"></i> --}}
-                                        評論
+                                        留言板
                                     </button>
                                 </form>
                             </div>
                             <div class="col-2">
                                 <form action="/shop01">
-                                    <button id="shoppingcar" type="submit" style="font-size:18px">
+                                    <button id="shoppingcar" type="submit" style="font-size:17px">
                                         {{-- <i class="fa-solid fa-cart-shopping"></i> --}}
                                         購物車
                                     </button>
@@ -710,6 +717,13 @@
                             @auth
                                 <div class="col-2">
                                     <a href="/dashboard">{{ Auth::user()->name }}，您好</a>
+                                </div>
+                                <div class="col-1">
+                                    <form action="/dashboard">
+                                        <button id="shoppingcar" type="submit" style="font-size:17px">
+                                            後台
+                                        </button>
+                                    </form>
                                 </div>
                                 <div class="col-1">
                                     {{-- 用a標籤做 --}}
@@ -724,11 +738,10 @@
                                 </div>
                             @endauth
                             @guest
-                                <div class="col-1 fs-3">
-                                    <form action="/login">
-                                        <button id="user" type="submit">
+                                <div class="col-1">
+                                    <form action="/login" style="height:80px">
+                                        <button id="user" type="submit" style="font-size: 16px" class="h-100">
                                             登入
-                                            {{-- <i class="fa-solid fa-circle-user"></i> --}}
                                         </button>
                                     </form>
                                 </div>

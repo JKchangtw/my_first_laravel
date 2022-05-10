@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    訂單管理頁面
+    訂單查看頁面
 @endsection
 @section('link')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -147,18 +147,14 @@
 @endsection
 @section('main')
     <section class="form">
-        <div class="container-xl">
-
+        <form method="post" action="/shop04"  class="container-xl">
+            @csrf
             <div class="row  d-flex justify-content-between">
                 <div class="col-10">
                     {{-- <h1>商品管理</h1> --}}
                 </div>
             </div>
-            <div class="row mb-1">
-                <form action="goods/create">
-                    {{-- <button id="goods_create" type="submit">新增商品</button> --}}
-                </form>
-            </div>
+            <div class="row mb-1"></div>
             <div class="row line"></div>
             <table id="goods_list" class="display">
                 <thead>
@@ -205,14 +201,15 @@
                             <td>
                                 {{-- <a href="/good/edit/{{ $good->id }}">編輯</a> --}}
                                 {{-- button onclick寫法 --}}
-                                <button class="btn w-100 edit"
-                                    onclick="location.href='/order/edit/{{ $item->id }}'">修改訂單狀態</button>
+                                {{-- <button class="btn w-100 edit"
+                                    onclick="location.href='/shop04'">查看訂單</button> --}}
+                                <button class="btn w-100 edit" type="submit">查看訂單</button>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-        </div>
+        </form>
 
 
     </section>

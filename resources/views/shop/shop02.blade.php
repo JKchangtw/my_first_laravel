@@ -122,35 +122,36 @@
         </div>
     </section>
     <section class="pay d-flex">
-        <div class="container">
+        <form action='/shop03' method="post" class="container">
+            @csrf
             <div class="row line"></div>
             <div class="row">
                 <h2>付款方式</h2>
             </div>
             <div class="row">
                 <div class="col-1">
-                    <input type="radio" name="howtopay">
+                    <input type="radio" name="howtopay" id='credit' value="1">
                 </div>
                 <div class="col-11">
-                    <span>信用卡付款</span>
+                    <label for='credit'>信用卡付款</label>
                 </div>
             </div>
             <div class="row line"></div>
             <div class="row">
                 <div class="col-1">
-                    <input type="radio" name="howtopay">
+                    <input type="radio" name="howtopay" id="atm" value="2">
                 </div>
                 <div class="col-11">
-                    <span>網路ATM</span>
+                    <label for="atm">網路ATM</label>
                 </div>
             </div>
             <div class="row line"></div>
             <div class="row">
                 <div class="col-1">
-                    <input type="radio" name="howtopay">
+                    <input type="radio" name="howtopay" id="code" value="3">
                 </div>
                 <div class="col-11">
-                    <span>超商代碼</span>
+                    <label for="code">超商代碼</label>
                 </div>
             </div>
             <div class="row line"></div>
@@ -159,19 +160,19 @@
             </div>
             <div class="row">
                 <div class="col-1">
-                    <input type="radio" name="howtodev">
+                    <input type="radio" name="howtodev" id="cat" value="1">
                 </div>
                 <div class="col-11">
-                    <span>黑貓宅配</span>
+                    <label for="cat">黑貓宅配</label>
                 </div>
             </div>
             <div class="row line"></div>
             <div class="row">
                 <div class="col-1">
-                    <input type="radio" name="howtodev">
+                    <input type="radio" name="howtodev"  id="store" value="2">
                 </div>
                 <div class="col-11">
-                    <span>超商店到店</span>
+                    <label for="store">超商店到店</label>
                 </div>
             </div>
             <div class="row line"></div>
@@ -179,37 +180,42 @@
                 <div class="totalbox">
                     <div>
                         <span class="left">數量：</span>
-                        <span class="right">3</span>
+                        <span class="right">{{ count($shopping) }}</span>
                     </div>
                     <div>
+                        {{-- 寫一個php來算小計 --}}
+                        {{-- 理想狀況在controller就要算好在帶進來 --}}
+                        <?php
+                        $subtotal = 0;
+                        foreach ($shopping as $value) {
+                            $subtotal += $value->qty * $value->product->goods_price;
+                        }
+                        ?>
                         <span class="left">小計：</span>
-                        <span class="right">$24.90</span>
+                        <span class="right">${{ $subtotal }}</span>
                     </div>
                     <div>
                         <span class="left">運費：</span>
-                        <span class="right">$24.90</span>
+                        <span class="right">待計算</span>
                     </div>
                     <div>
                         <span class="left">總計：</span>
-                        <span class="right">$24.90</span>
+                        <span class="right">${{ $subtotal}}</span>
                     </div>
                 </div>
             </div>
             <div class="row line"></div>
             <div class="row next d-flex justify-content-between">
                 <div class="col-1">
-                    <button class="back">
+                    <button class="back" type="button">
                         <a href="/shop01">
                             上一步
                         </a></button>
                 </div>
                 <div class="col-1">
-                    <button class="next">
-                        <a href="/shop03">
-                            下一步
-                        </a></button>
+                    <button type="submit"  class="next"> 下一步</button>
                 </div>
             </div>
-        </div>
+        </form>
     </section>
 @endsection

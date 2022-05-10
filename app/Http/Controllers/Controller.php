@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\DB;
 // 以下引入model
 use App\Models\Comment;
 use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class Controller extends BaseController
@@ -166,6 +168,13 @@ class Controller extends BaseController
 
             return redirect('/order');
         }
+
+    public function order_list(){
+        $orders=Order::where('user_id',Auth::id())->get();
+        $header='訂單查看頁';
+        $slot='';
+        return view('order.list',compact('orders','header','slot'));
+    }
 
 }
 

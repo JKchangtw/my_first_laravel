@@ -37,8 +37,13 @@ class Order extends Model
     protected $fillable = ['created_at', 'updated_at', 'subtotal', 'shipping_fee', 'total', 'product_qty', 'name', 'phone', 'email', 'address', 'pay_way', 'shopping_way', 'store_address', 'status', 'ps', 'user_id'];
 
     public function detail(){
-        //對方的 自已的
+        //對方的 自已的 一個訂單有很多訂單詳情
         return $this->hasMany(OrderDetail::class, 'order_id','id');
+    }
+    //訂單都屬於某一個使用者
+    public function user(){
+        //自己的 對方的
+        return $this->belongsTO(User::class,'user_id','id');
     }
 
 

@@ -263,10 +263,10 @@
                         <h6 style="font-family:monospace">商品剩餘數量：{{ $goods->goods_count }}</h6>
                         <div>
                             {{-- <i class="fa-solid fa-minus" id="minus"></i> --}}
-                            <span id="minus" style="font-size:18px; font-weight:bold">-</span>
+                            <span id="minus" style="font-size:18px; font-weight:bold" style="cursor: pointer;">-</span>
                             <input type="number" id="qty" name='qty' value="1">
                             {{-- <i class="fa-solid fa-plus" id="plus"></i> --}}
-                            <span id="plus" style="font-size:18px; font-weight:bold">+</span>
+                            <span id="plus" style="font-size:18px; font-weight:bold" style="cursor: pointer;">+</span>
                         </div>
 
                         <div class="button-box d-flex justifu-content-between">
@@ -309,7 +309,7 @@
             //在JS建立一個虛擬的form表單
             var formData = new FormData();
             formData.append('add_qty', parseInt(qty.value));
-            //把 id 抓進 formData中?
+            //append增加欄位 把 id 抓進 formData中?
             formData.append('product_id', {!! $goods->id !!});
             //
             formData.append('_token', '{!! csrf_token() !!}');

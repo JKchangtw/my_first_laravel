@@ -30,12 +30,13 @@ class OrderDetail extends Model
 
 
     public function order(){
-        //
+        //一個訂單詳情是屬於某筆訂單的 自己的 對方的
         return $this->belongsTo(Order::class, 'order_id','id');
     }
 
     public function product(){
-        //別人的 自己的
-        return $this->hasOne(Goods::class, 'id','product_id')
+        //每個訂單詳情都會連結到一個商品
+        //對方的  自己的
+        return $this->hasOne(Goods::class, 'id','product_id');
     }
 }
