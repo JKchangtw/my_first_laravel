@@ -164,6 +164,10 @@ Route::prefix('/order')->middleware(['auth','power'])->name('dashboard')->group(
     Route::post('/update/{id}',[Controller::class,'order_update']);
 
 });
+// a標籤寫法 用get 較不安全 可以透過打網址操作 只要知道編號和網址 即使沒登入也能刪除
+// Route::get('/delete_from_cart/{id}',[Controller::class,'delete_cart']);
+//用fetch寫法 Post 比較安全
+Route::post('/delete_from_cart/{id}',[Controller::class,'delete_cart']);
 
 //檢視訂單列表
 Route::post('order_list',[Controller::class,'order_list']);

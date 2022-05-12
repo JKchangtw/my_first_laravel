@@ -142,8 +142,56 @@
     <section class="list">
         <div class="container d-flex flex-column">
             <div class="row line"></div>
-            <div class="row">
-                <h1><b>訂單成立</b></h1>
+            <div class="row d-flex flex-row">
+                <div class="col-5">
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                </div>
+                <h1 class="col-2"><b>訂單成立</b></h1>
+                <div class="col-5">
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                    <i class="fa-solid fa-star-of-david col-1" style="color: yellow"></i>
+                </div>
             </div>
             <div class="row">
                 <h3>訂單明細</h3>

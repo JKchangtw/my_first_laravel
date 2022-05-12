@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
 use App\Models\OrderDetail;
 
+use App\Mail\OrderComplete;
+use Illuminate\Support\Facades\Mail;
+
 
 class GoodsController extends Controller
 {
@@ -359,6 +362,16 @@ class GoodsController extends Controller
         };
         //訂單建立成功後刪除購物車內容(清空購物車)
         ShoppingCart::where('user_id',Auth::id())->delete();
+
+        //訂單建立成功時，寄信通知使用者
+        //理論上用使用者註冊的信箱
+        $data = [
+            'order_id' => $order->id,
+            'user_name' => Auth::user()->name,
+            'subject' => '來自好友的通知'
+        ];
+        Mail::to(Auth::user()->email)->send(new OrderComplete($data));
+
         return redirect('/show_order/ '.$order->id,);
         //避免按F5重新整理會重複下到訂單 所以用redirect
         //然後以下寫一個專門展示訂單頁面用的function

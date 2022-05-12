@@ -1,4 +1,4 @@
-@extends('bootstrap.Template')
+@extends('bootstrap.TemplateUser')
 @section('title')
     Step01
 @endsection
@@ -55,15 +55,15 @@
     }
 
     #shopping-step01 .steps .green {
-    background-color: green;
-    color: white;
+    background-color: aquamarine;
+    color: black;
     }
 
     #shopping-step01 .steps .progress-25::before {
     content: '';
     width: 50%;
     height: 100%;
-    background-color: green;
+    background-color: aquamarine;
     display: block;
     border-radius: 5px;
     }
@@ -80,7 +80,6 @@
     height: 100%;
     }
     .list .row.line{
-
     width: 100%;
     height: 1px;
     background-color: gainsboro;
@@ -90,8 +89,8 @@
     position:relative;
     }
     .img1 img{
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     background-position: center;
     background-size: contain;
@@ -128,11 +127,11 @@
     }
 
     .row.next .next {
-    width: 80px;
+    {{-- width: 80px;
     height: 30px;
-    border: unset;
-    background-color: aquamarine;
-    font-size: 14px;
+    border: unset; --}}
+    {{-- background-color: aquamarine; --}}
+    {{-- font-size: 14px; --}}
     }
     .count{
     position:relative;
@@ -148,7 +147,7 @@
     .totalbox span{
     font-size:20px;
     }
-    .row.total{
+    .row.tol{
     height:150px;
     }
 @endsection
@@ -180,34 +179,44 @@
             </div>
             <div class="row line"></div>
             @foreach ($shopping as $i => $item)
-                <div class="row d-flex flex-row">
-                    <div class="col-8 d-flex flex-row">
-                        <div class="img1">
+                <div class="row d-flex flex-row" style="height: 100px; position:relative">
+                    <div class="col-7 d-flex flex-row h-100">
+                        <div class="img1 me-5">
                             <img src="{{ $item->product->goods_img }}" alt="">
                         </div>
                         <div class="buywhat ms-5">
                             <h3 style="line-height: 100px">{{ $item->product->goods_name }}</h3>
                             {{-- <h6>#41551</h6> --}}
+                            <div class="number" data-product_qty="{{ $item->product->goods_count }}"
+                                data-product_price="{{ $item->product->goods_price }}">
+                            </div>
                         </div>
                     </div>
-                    <div class="col-4 d-flex justify-content-between">
-                        <div class="count d-flex">
-                            <span class="me-3" id="minus" style="font-size:18px; font-weight:bold;">-</span>
+                    <div class="col-4 d-flex justify-content-between" >
+                        <div class="count col-8 d-flex flex-row justify-content-around">
+                            <div class="minus" id="minus"
+                                style="font-size:30px; font-weight:bold; line-height:100px">-</div>
                             {{-- 表單吃name 加上[]就變陣列 才會有很多個商品 的數量 --}}
-                            <input class="me-3" type="number" id="qty" name='qty[]' value="{{ $item->qty }}">
-                            <span id="plus" style="font-size:18px; font-weight:bold;">+</span>
+                            <input class="qty" type="number" id="qty" name='qty[]' value="{{ $item->qty }}"
+                                readonly>
+                            <div class="plus" id="plus"
+                                style="font-size:30px; font-weight:bold; line-height:100px">+</div>
                         </div>
-                        <div class="price" style="font-family: monospace; font-size:18px; line-height: 100px">
+                        <div class="price col-4" style="font-family: monospace; font-size:18px; line-height: 100px">
                             ${{ $item->product->goods_price * $item->qty }}</div>
+
+                        {{-- <a class="col-2 btn btn-danger" href="/delete_from_cart/{{$item->id}}">刪除</a> --}}
                     </div>
+                    <div class="col-1 btn btn-danger" style="height:40px;position:absolute;top:50%;right:0;transform:translateY(-50%);"
+                        onclick="delete_cart('{{ $item->id }}')">刪除</div>
                 </div>
                 <div class="row line"></div>
             @endforeach
 
-            <div class="row total d-flex flex-column">
-                <div class="totalbox">
+            <div class="row tol d-flex flex-column" style="position: relative;">
+                <div class="col-3 totalbox" style="position: absolute; top:50% ;transform:translateY(-50%);right:0">
                     <div>
-                        <span class="left">數量：</span>
+                        <span class="left">品項：</span>
                         <span class="right">{{ count($shopping) }}</span>
                     </div>
                     <div>
@@ -220,7 +229,7 @@
                         }
                         ?>
                         <span class="left">小計：</span>
-                        <span class="right">${{ $subtotal }}</span>
+                        <span class="subtotal">${{ $subtotal }}</span>
                     </div>
                     <div>
                         <span class="left">運費：</span>
@@ -228,7 +237,7 @@
                     </div>
                     <div>
                         <span class="left">總計：</span>
-                        <span class="right">${{ $subtotal}}</span>
+                        <span class="total">${{ $subtotal }}</span>
                     </div>
                 </div>
             </div>
@@ -238,21 +247,69 @@
                     <i class="fa-solid fa-arrow-left"></i>
                     <a class="back" href="/bootstrap">返回購物</a>
                 </div>
-                <button class="next" type="submit">下一步</button>
+                <button class="col-1 next btn btn-primary" type="submit" style="height:40px;background-color: aquamarine;color:blue;">下一步</button>
             </div>
         </form>
     </section>
 @endsection
 @section('script')
     <script>
-        const minus = document.querySelector('#minus');
-        const qty = document.querySelector('#qty');
-        const plus = document.querySelector('#plus');
-        minus.onclick = function() {
-            //用parseInt將字串轉換成數字
-            if (parseInt(qty.value) > 1) {
-                qty.value = parseInt(qty.value) - 1;
+        //用class綁 因為會有很多個
+        const minus = document.querySelectorAll('.minus');
+        const qty = document.querySelectorAll('.qty');
+        const plus = document.querySelectorAll('.plus');
+        const price = document.querySelectorAll('.price');
+        //為知道各產品所剩數量以方便判斷 所以將資料印在html中 再用js抓進來
+        const number = document.querySelectorAll('.number');
+        //小計與總計
+        const subtotal = document.querySelector('.subtotal');
+        const total = document.querySelector('.total');
+
+        for (let i = 0; i < minus.length; i++) {
+            minus[i].onclick = function() {
+                //用parseInt將字串轉換成數字
+                if (parseInt(qty[i].value) > 1) {
+                    qty[i].value = parseInt(qty[i].value) - 1
+                    price[i].innerHTML = '$' + (parseInt(number[i].dataset.product_price) * parseInt(qty[i].value));
+                }
+                get_total();
+
             }
+            plus[i].onclick = function() {
+                if (parseInt(qty[i].value) < parseInt(number[i].dataset.product_qty)) {
+                    qty[i].value = parseInt(qty[i].value) + 1
+                    price[i].innerHTML = '$' + (parseInt(number[i].dataset.product_price) * parseInt(qty[i].value));
+
+                }
+                get_total();
+
+            }
+
+        }
+
+
+        function get_total() {
+            var sum = 0
+            for (let j = 0; j < minus.length; j++) {
+                sum += parseInt(number[j].dataset.product_price) * parseInt(qty[j].value);
+            }
+            subtotal.innerHTML = '$' + sum;
+            total.innerHTML = '$' + sum + '(尚未加運費)';
+
+        }
+
+        function delete_cart(id) {
+            console.log(id);
+            var form = new FormData();
+            //
+            form.append('_token', '{{ csrf_token() }}');
+            fetch("/delete_from_cart/" + id, {
+                method: 'POST',
+                body: form
+            }).then(res => {
+                //方法一：重整頁面 dirty but work
+                location.reload();
+            })
         }
     </script>
 @endsection

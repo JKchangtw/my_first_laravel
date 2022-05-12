@@ -84,7 +84,7 @@
     height: 50px;
     }
     .pay .row.total{
-    height: 100px;
+    height: 150px;
     }
 
     .pay .row.line {
@@ -176,8 +176,8 @@
                 </div>
             </div>
             <div class="row line"></div>
-            <div class="row total d-flex flex-column">
-                <div class="totalbox">
+            <div class="row total d-flex flex-column" style="position: relative ;">
+                <div class="col-3 totalbox" style="position: absolute;top:50%;right:0;transform:translateY(-50%);font-size:22px">
                     <div>
                         <span class="left">數量：</span>
                         <span class="right">{{ count($shopping) }}</span>

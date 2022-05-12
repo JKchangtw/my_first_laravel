@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\DB;
 // 以下引入model
 use App\Models\Comment;
 use App\Models\Order;
+use App\Models\ShoppingCart;
 use Illuminate\Support\Facades\Auth;
+
 
 
 
@@ -176,6 +178,11 @@ class Controller extends BaseController
         return view('order.list',compact('orders','header','slot'));
     }
 
+    public function delete_cart($id){
+        // dd('sss');
+        ShoppingCart::find($id)->delete();
+        return redirect('/shop01');
+    }
 }
 
 
