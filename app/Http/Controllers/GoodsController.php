@@ -377,6 +377,7 @@ class GoodsController extends Controller
         //然後以下寫一個專門展示訂單頁面用的function
     }
     public function show_order($id){
+        
         $order=Order::find($id);
 
         // $merch = ShoppingCart::where('user_id',Auth::id())->get();

@@ -147,7 +147,7 @@
 @endsection
 @section('main')
     <section class="form">
-        <form method="post" action="/shop04"  class="container-xl">
+        <form method="post" action="" class="container-xl">
             @csrf
             <div class="row  d-flex justify-content-between">
                 <div class="col-10">
@@ -172,39 +172,42 @@
                     {{-- 前面對應的是controller的getModel的變數 後面是在這邊自訂的 跟以下對應即可 --}}
                     @foreach ($orders as $item)
                         <tr>
-                            <td>
-                                <div class="goods_img">
-                                    {{-- <img src="{{ asset('image/pizza-3007395__480.jpg') }}" alt=""> --}}
-                                    {{-- 以下改成foreach形式 --}}
-                                    {{-- <img src="{{ $good->img_path }}" alt="" style="opacity:{{ $good->img_opacity }}"> --}}
-                                    <span>{{$item->id}}</span>
-                                </div>
-                            </td>
-                            <td class="goods_name">{{ $item->name }}</td>
-                            <td class="goods_email">{{ $item->email }}</td>
-                            <td class="goods_price">{{ $item->total }}</td>
-                            <td class="goods_count">
-                                @if( $item->status == 1 )
-                                訂單成立，尚未付款
-                                @elseif($item->status == 2)
-                                已付款
-                                @elseif($item->status == 3)
-                                已出貨
-                                @elseif($item->status == 4)
-                                已結單
-                                @else
-                                已取消
-                                @endif
-                            </td>
-                            {{-- <td class="goods_intro">{{ $item->ps }}</td> --}}
+                            <form action="/show_order/{{$item->id}}">
+                                <td>
+                                    <div class="goods_img">
+                                        {{-- <img src="{{ asset('image/pizza-3007395__480.jpg') }}" alt=""> --}}
+                                        {{-- 以下改成foreach形式 --}}
+                                        {{-- <img src="{{ $good->img_path }}" alt="" style="opacity:{{ $good->img_opacity }}"> --}}
+                                        <span>{{ $item->id }}</span>
+                                    </div>
+                                </td>
+                                <td class="goods_name">{{ $item->name }}</td>
+                                <td class="goods_email">{{ $item->email }}</td>
+                                <td class="goods_price">{{ $item->total }}</td>
+                                <td class="goods_count">
+                                    @if ($item->status == 1)
+                                        訂單成立，尚未付款
+                                    @elseif($item->status == 2)
+                                        已付款
+                                    @elseif($item->status == 3)
+                                        已出貨
+                                    @elseif($item->status == 4)
+                                        已結單
+                                    @else
+                                        已取消
+                                    @endif
+                                </td>
+                                {{-- <td class="goods_intro">{{ $item->ps }}</td> --}}
 
-                            <td>
-                                {{-- <a href="/good/edit/{{ $good->id }}">編輯</a> --}}
-                                {{-- button onclick寫法 --}}
-                                {{-- <button class="btn w-100 edit"
+                                <td>
+                                    {{-- <a href="/good/edit/{{ $good->id }}">編輯</a> --}}
+                                    {{-- button onclick寫法 --}}
+                                    {{-- <button class="btn w-100 edit"
                                     onclick="location.href='/shop04'">查看訂單</button> --}}
-                                <button class="btn w-100 edit" type="submit">查看訂單</button>
-                            </td>
+                                    <button class="btn w-100 edit" type="submit">查看訂單</button>
+                                    {{-- <button class="btn btn-success" onclick="location.href='/show_order/{{$item->id}}'">查看訂單</button> --}}
+                                </td>
+                            </form>
                         </tr>
                     @endforeach
                 </tbody>

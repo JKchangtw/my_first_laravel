@@ -177,7 +177,7 @@ class Controller extends BaseController
         $slot='';
         return view('order.list',compact('orders','header','slot'));
     }
-
+    
     public function delete_cart($id){
         // dd('sss');
         ShoppingCart::find($id)->delete();

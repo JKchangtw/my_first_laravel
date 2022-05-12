@@ -494,8 +494,8 @@
         }
 
         .merch .add button {
-            width: 80px;
-            height: 30px;
+            width: 100px;
+            height: 40px;
             background-color: #6366f1;
             margin: 0 auto;
             border: unset;
@@ -505,15 +505,15 @@
         }
 
         .merch .add .fav {
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background-color: gray;
         }
 
         .merch .add .fav div {
             text-align: center;
-            line-height: 30px;
+            line-height: 40px;
         }
 
         .cardsection4 img {
@@ -1133,9 +1133,9 @@
                             </div>
                         </div>
                         <div class="add d-flex flex-row justify-content-between">
-                            <div class="price">${{ $goodsintro[0]->goods_price }}</div>
+                            <div class="price">${{ $goodsintro[0]->goods_price }} NTD</div>
                             <div class="add-right d-flex">
-                                <button type="button" class="">Button</button>
+                                <button type="button" onclick="location.href='/info/{{ $goodsintro[0]->id }}'">購買</button>
                                 <div class="fav ms-2">
                                     <div><i class="fa-solid fa-heart"></i></div>
                                 </div>

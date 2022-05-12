@@ -88,7 +88,7 @@
     height: 40px;
     }
 
-    .form .row.line{
+    .form .row1.line{
     width:100%;
     height:2px;
     background-color:gray;
@@ -212,20 +212,21 @@
     <section class="form">
         <div class="container-fluid form">
 
-            <div class="row">
-                <h1 style="color:blue;font-weight:bold; font-family:monospace">商品資訊</h1>
+            <div class="row" >
+                <i class="fa-solid fa-magnifying-glass mt-2 me-2"  style="color:darkgreen;font-weight:bold;font-size:30px;float:left;width:30px"></i>
+                <h1 style="color:darkgreen;font-weight:bold; font-family:monospace;float:left;width:192px">商品資訊</h1>
             </div>
-            <div class="row line mb-2"></div>
+            <div class="row1 line mb-2"></div>
 
 
             <form class="d-flex flex-column">
                 @csrf
-                <h2 style="background: white; color:black; font-family:fantasy">{{ $goods->goods_name }}</h2>
+                <h2 style="background: snow; color:black; font-family:fantasy">{{ $goods->goods_name }}</h2>
 
                 <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img src="{{ $goods->goods_img }}" />
+                        <div class="swiper-slide" style="width:663px;height:442px">
+                            <img src="{{ $goods->goods_img }}"  style="width:663px;height:442px">
                         </div>
                         @foreach ($goods->imgs as $item)
                             <div class="swiper-slide">
@@ -255,12 +256,12 @@
                 </div> --}}
                 <div class="row">
                     <div class="col-8">
-                        <h5 style="font-family:monospace">商品介紹：{{ $goods->goods_intro }}</h5>
+                        <h5 style="font-family:monospace"><i class="fa-solid fa-hand me-2" style="font-size: 22px"></i>商品介紹：{{ $goods->goods_intro }}</h5>
                     </div>
                     <div clsss="col-4">
-                        <h5 style="font-family:monospace">商品售價：{{ $goods->goods_price }} NTD</h5>
+                        <h5 style="font-family:monospace"><i class="fa-solid fa-hand-holding-dollar me-1" style="font-size: 22px"></i>商品售價：{{ $goods->goods_price }} NTD</h5>
 
-                        <h6 style="font-family:monospace">商品剩餘數量：{{ $goods->goods_count }}</h6>
+                        <h5 style="font-family:monospace"><i class="fa-solid fa-hand-lizard me-2" style="font-size: 22px"></i>商品剩餘數量：{{ $goods->goods_count }}</h5>
                         <div>
                             {{-- <i class="fa-solid fa-minus" id="minus"></i> --}}
                             <span id="minus" style="font-size:18px; font-weight:bold" style="cursor: pointer;">-</span>
