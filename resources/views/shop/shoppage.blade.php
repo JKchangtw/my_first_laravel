@@ -22,8 +22,8 @@
                 @foreach ($goodslist as $goods)
                     <div class="col-3 card text-dark bg-light mb-3 me-1">
                         <button class="btn" onclick="location.href='/info/{{ $goods->id }}'">
-                            <div class="row g-0 d-flex flex-row">
-                                <div class="col-md-4" style="width:300px;height:250px ">
+                            <div class="row g-0 d-flex flex-row align-middle">
+                                <div class="" style="width:300px;height:250px ">
                                     <img src="{{ $goods->goods_img }}" class="img-fluid rounded-start mt-2" alt="..."
                                         style="border-radius: 5px">
 
@@ -31,7 +31,7 @@
                                 {{-- <div class="swiper-button-next"></div>
                             <div class="swiper-button-prev"></div>
                             <div class="swiper-pagination"></div> --}}
-                                <div class="col-md-8">
+                                <div class="">
                                     <div class="card-body">
                                         <h5 class="card-title">CATEGORY</h5>
                                         <h4 class="card-text">{{ $goods->goods_name }}</h4>

@@ -666,7 +666,7 @@
                 <div id="logo" class="col-4">
                     <form action="/bootstrap" class="ps-5">
                         <button id='frontpageBtn' type='submit' style="border: unset" class="h-100">
-                            <img src="/digipack_IMG/logo.jpg" alt="" class="h-100">
+                            <i class="fa-solid fa-house-user" style="width: 80px;"></i>
                         </button>
                     </form>
                 </div>

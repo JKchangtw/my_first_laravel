@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Goods;
-use App\Models\Product_img;
+// use App\Models\Product_img;
 
 /**
  * @property integer $id
